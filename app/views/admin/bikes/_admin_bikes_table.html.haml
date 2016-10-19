@@ -62,10 +62,10 @@
       %td.not-tiny-screens
         .less-strong-hold
           = bike.creation_organization.name if bike.creation_organization.present?
-          - if bike.is_pos
+          - if bike.creation_state && bike.is_pos
             %span.less-strong-right
               pos
-          - elsif bike.origin
+          - elsif bike.creation_state && bike.origin
             %span.less-strong-right
               = bike.origin
         
