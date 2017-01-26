@@ -3,8 +3,8 @@
     %p
       #{current_organization.name} has
       %strong
-        #{ pluralize(@bikes_count, 'bike') }
-      registered bikes
+        #{ t('common.bikes', :count => @bikes_count) }
+      #{t('common.registered-plural', :count => @bikes_count)} #{t('common.bikes', :count => @bikes_count)}
 
   = form_tag organization_bikes_path(organization_id: current_organization.to_param), id: 'bikes_search_form', class: 'bikes-search-form', method: :get do
     = render partial: '/shared/search_inputs'
@@ -13,21 +13,21 @@
 .organized-bikes-table
   - if @search_query_present
     %p
-      #{ pluralize(@bikes_count, 'bike') } matching bikes
+      #{ t('common.bikes', :count => @bikes_count) } #{t('organized.matching-bikes')}
   %table.table.table-striped.table-hover.table-bordered.table-sm.without-exterior-border
     %thead.small-header
       %tr
-        %th.date-added Date added
-        %th.hidden-xs-down Manufacturer
-        %th.hidden-xs-down Model
-        %th.hidden-xs-down Color
+        %th.date-added #{t('organized.date-added')}
+        %th.hidden-xs-down #{t('common.Manufacturer')}
+        %th.hidden-xs-down #{t('common.Model')}
+        %th.hidden-xs-down #{t('common.Color')}
         %th
           %small.hidden-sm-up
-            mnfg, model,
+            #{t('common.mnfg')}, #{t('common.model')},
             %span.less-strong
-              color
+              #{t('common.color')}
             %br
-          Sent to
+          #{t('shared.edit_bike.sent-to')}
         / %th View PDF
     %tbody
       - @bikes.each do |bike|

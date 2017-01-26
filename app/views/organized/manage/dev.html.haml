@@ -1,8 +1,8 @@
 .organized-page-header
   %h1
-    #{current_organization.name} development resources
+    #{current_organization.name} #{t('organized.development-resources')}
   %p
-    We're adding features here! Check back soon.
+    #{t('organized.were-adding-feat')}
 
 / .tutorials
 /   %h3
@@ -17,36 +17,36 @@
     .col-md-6
       .card.card-block
         %h3.card-title
-          Lightspeed Retail Integration
+          #{t('organized.lightspeed-retail')}
         %p.card-text
-          We provide an integration to automatically register the bikes you sell if you are using Lightspeed (#{ link_to 'read more', lightspeed_integration_path }).
+          #{t('organized.we-provide')} (#{ link_to "#{t('organized.read-more')}", lightspeed_integration_path }).
 
         %a.card-link{ href: "https://posintegration.bikeindex.org/organizations/connect?id=#{current_organization.slug}&access_token=#{current_organization.access_token}"}
-          Point of Sales Integration
+          #{t('organized.point-of')}
 
   - if current_organization.api_access_approved
     .col-md-6
       .card.card-block
         %h3.card-title
-          API Access
+          #{t('organized.api-access')}
         .card-text
           %dl
             %dt
-              Organization slug
+              #{t('organized.org-slug')}
             %dd
               = current_organization.slug
             %dt
-              API Access token
+              #{t('organized.api-access-token')}
             %dd
               = current_organization.access_token
             %dt
-              API registration user
+              #{t('organized.api-reg-user')}
             %dd
               - if current_organization.auto_user.present?
                 = current_organization.auto_user.email
               - else
                 %span
-                  No user set!
-                Contact us at
+                  #{t('organized.no-user-set')}
+                #{t('organized.contact-us-at')}
                 = link_to 'support@bikeindex.org', 'mailto:support@bikeindex.org'
-                to get set up for API access.
+                #{t('organized.to-get-api')}.

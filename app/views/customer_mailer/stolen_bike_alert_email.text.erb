@@ -3,21 +3,21 @@
 --------------------------------
 
 ---
-Make: <%= @customer_contact.bike.mnfg_name  %>
-    
-Serial: <%= @customer_contact.bike.serial_number %>
-    
-Color: <% if @customer_contact.bike.paint.present? %><%= @customer_contact.bike.paint.name %><% else %><%= @customer_contact.bike.primary_frame_color.name %><% end %>
+<%=t :common.Make %>: <%= @customer_contact.bike.mnfg_name  %>
+
+<%=t :common.Serial %>: <%= @customer_contact.bike.serial_number %>
+
+<%=t :common.Color %>: <% if @customer_contact.bike.paint.present? %><%= @customer_contact.bike.paint.name %><% else %><%= @customer_contact.bike.primary_frame_color.name %><% end %>
 ---  
 
 <% if @customer_contact.bike.stolen %>
-Hopefully you find the <%= @customer_contact.bike.type %> soon. Give us a heads up when you do!
+<%=t :customer-mailer.hopefully-you %> <%= @customer_contact.bike.type %> <%=t :customer-mailer.soon-give %>
 <% end %>
 
 
-* Claim the <%= @customer_contact.bike.type %> here: <%= bike_url(@customer_contact.bike) %> *
+* <%=t :organized.claim %> <%= @customer_contact.bike.type %> <%=t :common.here %>: <%= bike_url(@customer_contact.bike) %> *
 
-Sign up or sign in to BikeIndex.org to claim your <%= @customer_contact.bike.type %> and edit it, upload photos and make sure you never lose track of your trusty steed!
+<%=t :customer-mailer.signup %> <%= @customer_contact.bike.type %> <%=t :customer-mailer.and-edit %>
 
 
 

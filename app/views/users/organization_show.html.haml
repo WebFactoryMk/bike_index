@@ -5,11 +5,11 @@
     = @user.email
 
 %p
-  Joined the bike index #{@user.created_at.strftime("%-m/%-d/%Y")}
+  #{t('users.joined-bi')} #{@user.created_at.strftime("%-m/%-d/%Y")}
 
 %section.full-screen-table.padded
   %p 
-    Bikes indexed for
+    #{t('users.bike-indexed-for')}
     %strong
       = @membership.organization.name
     by
@@ -22,15 +22,15 @@
       / %th
       /   Link&nbsp;&nbsp;
       %th
-        Date indexed
+        #{t('users.date-indexed')}
       %th.medium-screens
-        Sent to
+        #{t('shared.edit_bike.sent-to')}
       %th
-        Manufacturer
+        #{t('common.Manufacturer')}
       %th.large-screens
-        Color&nbsp;&nbsp;
+        #{t('common.Color')}&nbsp;&nbsp;
       %th.large-screens
-        Rear Wheel size
+        #{t('users.rear-wheel-size')}
 
     %tbody
       - @bikes.each do |bike|
@@ -39,11 +39,11 @@
             - if bike.created_at.today?
               %span.hidden
                 = bike.created_at.strftime("%-m.%-d.%Y %-H.%M")
-              Today at #{bike.created_at.strftime("%-I %p")}
+              #{t('users.today-at')} #{bike.created_at.strftime("%-I %p")}
             - elsif Date.yesterday().beginning_of_day() <= bike.created_at
               %span.hidden
                 = bike.created_at.strftime("%-m.%-d.%Y %-H.%M")
-              Yesterday at #{bike.created_at.strftime("%-I %p")}
+              #{t('users.yesterday-at')} #{bike.created_at.strftime("%-I %p")}
             - else
               %span.hidden
                 = bike.created_at.strftime("%-m.%-d.%Y %-H.%M")
@@ -61,7 +61,7 @@
 %section
 
   %h4
-    Edit #{@user.email}
+    #{t('common.Edit')} #{@user.email}
 
   .form.form-horizontal
     = form_for @membership do |f|
@@ -71,12 +71,12 @@
         .controls.radio-controls
           %label.radio
             = f.radio_button :role, "admin"
-            Admin of organization
+            #{t('users.admin-of-org')}
           %label.radio
             = f.radio_button :role, "member"
-            Member of organization
+            #{t('users.member-of-org')}
 
       .membership-actions
-        = f.submit 'Update role', class: 'button-green'
-        = link_to "Delete member", membership_url(@membership), method: :delete, confirm: "Are you sure you want to remove #{@user.email} from your organization?", class: "button-red"
+        = f.submit "#{t('users.update-role')}", class: 'button-green'
+        = link_to "#{t('users.delete-member')}", membership_url(@membership), method: :delete, confirm: "#{t('user.delete-conf-1')} #{@user.email} #{t('user.delete-conf-2')}", class: "button-red"
     

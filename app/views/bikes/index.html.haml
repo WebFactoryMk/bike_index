@@ -1,10 +1,10 @@
-- stolenness_desc = { 'proximity' => 'nearby stolen', 'non' => 'non-stolen', 'stolen' => 'stolen', 'all' => 'all' }[@interpreted_params[:stolenness]]
+- stolenness_desc = { 'proximity' => "#{t('bikes.nearby-stolen')}", 'non' => "#{t('bikes.non-stolen')}", 'stolen' => "#{t('bikes.stolen')}", 'all' => "#{t('bikes.all')}" }[@interpreted_params[:stolenness]]
 
 .container
   .row.first-row
     .col-md-8
       %h1
-        Search for #{stolenness_desc} bikes
+        #{t('bikes.search-for')} #{stolenness_desc} #{t('common.bikes')}
     .col-md-4.ad-col
       .ad-block#top468x60
         
@@ -13,32 +13,32 @@
       = form_tag bikes_path, id: 'bikes_search_form', class: 'bikes-search-form', enforce_utf8: false, method: :get do
         = render partial: '/shared/search_inputs'
         .stolen-search-fields{ class: ('currently-hidden' unless params[:stolenness] == 'proximity') }
-          = text_field_tag :location, params[:location], placeholder: 'Anywhere', class: 'form-control stolen-proximity'
+          = text_field_tag :location, params[:location], placeholder: "#{t('common.Anywhere')}", class: 'form-control stolen-proximity'
           %span
-            miles of
+            #{t('bikes.miles-of')}
           = number_field_tag :distance, @interpreted_params[:distance] || 100, placeholder: '100', min: 1, class: 'form-control stolen-radius'
           %span
-            within
+            #{t('bikes.within')}
           = hidden_field_tag :stolenness, params[:stolenness]
       - unless params[:stolenness] == 'all'
         .search-type-tabs
           %ul#stolenness_tabs.nav.nav-tabs{ role: 'tablist' }
             %li#stolenness_tab_proximity.nav-item{ data: { stolenness: 'proximity' } }
               %a.nav-link{ href: '#', class: ('active' if @interpreted_params[:stolenness] == 'proximity'), role: 'tab' }
-                Stolen within
+                #{t('common.stolen')} #{t('bikes.within')}
                 %span#search_distance
                   X
-                miles of
+                #{t('bikes.miles-of')}
                 %span#search_location
-                  you
+                  #{t('bikes.you')}
                 %span.count
             %li#stolenness_tab_stolen.nav-item{ data: { stolenness: 'stolen' } }
               %a.nav-link{ href: '#', class: ('active' if @interpreted_params[:stolenness] == 'stolen'), role: 'tab' }
-                Stolen anywhere
+                #{t('bikes.stolen-anywhere')}
                 %span.count
             %li#stolenness_tab_non.nav-item{ data: { stolenness: 'non' } }
               %a.nav-link{ href: '#', class: ('active' if @interpreted_params[:stolenness] == 'non'), role: 'tab' }
-                Not marked stolen
+                #{t('bikes.not-marked-stolend')}
                 %span.count
   .row
     .col-md-8
@@ -50,11 +50,11 @@
 
       - else
         %h3.no-exact-results
-          No #{stolenness_desc} bikes matched your search
+          #{t('bikes.No')} #{stolenness_desc} #{t('bikes.bikes-matched')}
 
       - if @close_serials.present?
         %h3.secondary-matches
-          #{stolenness_desc} with serial numbers close to
+          #{stolenness_desc} #{t('bikes.with-serials')}
           %em
             #{params[:serial]}
 

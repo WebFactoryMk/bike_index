@@ -11,28 +11,28 @@
   %ul.info-holder
     %li
       %strong
-        Make:
+        "#{t('common.Make')}:"
       = @bike.mnfg_name
     %li
       %strong
-        Serial:
+        "#{t('common.Serial')}:"
       = @bike.serial_number
     %li
       %strong
-        Color#{ 's' if @bike.frame_colors.count > 1 }:
+        #{t('common.Color')}#{ 's' if @bike.frame_colors.count > 1 }:
       = @bike.frame_colors.to_sentence
     - if @bike.stolen
       - stolen_record = @bike.current_stolen_record
       %li
         %strong
-          = @bike.recovered ? 'Found:' : 'Stolen from:'
+          = @bike.recovered ? "#{t('shared.email_bike.Found'}" : "#{t('shared.email_bike.Stolen-from'}"
         = stolen_record.show_stolen_address
       %li
         %strong
-          Date:
+          "#{t('common.Date')}:"
         = l stolen_record.date_stolen, format: :dotted
     - if (@bike.ownerships.count == 1 && @bike.registered_new)
       %li
         %em.less-strong
-          Color may be incorrect. Please update it if necessary!
+          #{t('shared.email_bike.color-maybe-incorrect')}
   .clearstuffdiv

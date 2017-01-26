@@ -10,11 +10,11 @@
               = @edit_templates[@edit_template]
           - if @bike.stolen and @bike.find_current_stolen_record.present?
             / Helper text display
-            - stolen_type = @bike.recovered ? 'recovered' : 'stolen'
+            - stolen_type = @bike.recovered ? "#{t('common.recovered')}" : "#{t('common.stolen')}"
             = f.fields_for :stolen_records do |srecord|
               - next unless srecord.object.current # Because they may have multiple stolen records
               .form-group.row.unnested-field
-                = srecord.label :date_stolen_input, "When was it #{stolen_type}", class: 'form-well-label'
+                = srecord.label :date_stolen_input, "#{t('bikes.when-was-it')} #{stolen_type}", class: 'form-well-label'
                 .form-well-input
                   = srecord.text_field :date_stolen_input, required: true, class: 'form-control date_stolen_input', value: srecord.object.formatted_date
 
@@ -41,17 +41,17 @@
                     = srecord.select(:lock_defeat_description, StolenRecord.locking_defeat_description_select, prompt: '')
 
               .form-group.row.unnested-field
-                - description_label = @bike.recovered ? "How did you recovered the #{@bike.type}" : 'Description of the incident'
+                - description_label = @bike.recovered ? "#{t('bikes.how-did-you')} #{@bike.type}" : "#{t('bikes.desc-incident')}"
                 = srecord.label :theft_description, description_label, class:  'form-well-label'
                 .form-well-input-large
                   = srecord.text_area :theft_description, rows: 3, class: 'form-control'
 
               .form-group.row.unnested-field
-                = srecord.label :police_report_number, 'Police report #', class: 'form-well-label'
+                = srecord.label :police_report_number, "#{t('bikes.police-report')} #", class: 'form-well-label'
                 .form-well-input
                   = srecord.text_field :police_report_number, class: 'form-control'
               .form-group.row.unnested-field.no-divider-row
-                = srecord.label :police_report_department, 'Department & city', class: 'form-well-label'
+                = srecord.label :police_report_department, "#{t('bikes.depart-city')}", class: 'form-well-label'
                 .form-well-input
                   = srecord.text_field :police_report_department, class: 'form-control'
 
@@ -59,79 +59,79 @@
               .form-group.row.unnested-field.full-width-section.no-divider-row
                 %label
                   = srecord.check_box :proof_of_ownership
-                  Do you have proof of ownership of this #{@bike.type}?
+                  #{t('bikes.do-you-have-proof')} #{@bike.type}?
                 .full-width-checkbox-help
-                  If this #{@bike.type} was added to the Index by a bike shop, that counts as proof of ownership
+                  #{t('bikes.if-this')} #{@bike.type} #{t('bikes.was-added-to-bi')}
               %hr
               .form-group.row.unnested-field.full-width-section.no-divider-row
                 %label
                   = srecord.check_box :receive_notifications
-                  Receive notifications from the Bike Index about this stolen #{@bike.type}
+                  #{t('bikes.receive-notif')} #{@bike.type}
                 .full-width-checkbox-help
-                  e.g. if we tweet about or see someone searching for its serial number
+                  #{t('bikes.if-we-tweet')}
           - else
             .no-divider-row.full-width-button
               %a.btn.btn-danger.btn-lg{data: { toggle: 'modal', target: '#toggle-stolen' } }
-                This #{@bike.type} is stolen or missing!
+                #{t('common.This')} #{@bike.type} #{t('bikes.is-stolen')}
 
         / if stolen, we also add an exterior block for marking not stolen
         - if @bike.stolen and @bike.find_current_stolen_record.present?
           .form-wrap.secondary-form-wrap
             .form-well-form-header
               %h3
-                Recovered
+                #{t('common.Recovered')}
             .no-divider-row.full-width-button
               %a.btn.btn-success.btn-lg{data: { toggle: 'modal', target: '#toggle-stolen' } }
-                This #{@bike.type} has been returned!
+                #{t('common.This')} #{@bike.type} #{t('bikes.has-been-returned')}
 
 - if @bike.stolen and @bike.find_current_stolen_record.present?
-  - modal_title = "We're so glad you got your #{@bike.type} back!"
+  - modal_title = "#{t('bikes.were-so-glad')} #{@bike.type} #{t('bikes.back')}!"
   - alert_body = capture_haml do
     %p
-      Please tell us how you got your #{@bike.type} back, we really care! 
+      #{t('bikes.pls-tell-us')} #{@bike.type} #{t('bikes.back-we-really')}
     %p
-      It's how we get better at recovering bikes.
+      #{t('bikes.its-how-we')}
   - modal_body = capture_haml do
     .modal-body
-      = render partial: '/shared/alert', locals: { body: alert_body, title: 'Not enough information!', class_names: 'currently-hidden' }
+      = render partial: '/shared/alert', locals: { body: alert_body, title: "#{t('bikes.not-enough-info')}!", class_names: 'currently-hidden' }
       = form_tag  do |t|
         = hidden_field_tag :mark_recovered_bike_id, @bike.id
         = hidden_field_tag :mark_recovered_stolen_record_id, (@bike.current_stolen_record_id if @bike.current_stolen_record_id.present?)
         .form-group
           %label{ for: :mark_recovered_reason }
-            How did you get it back?
+            #{t('bikes.how-did-you')}
           = text_area_tag :mark_recovered_reason, '', class: 'form-control'
         .checkbox
           %label
             %input#mark_recovered_we_helped{ type: 'checkbox' }
-            Did we help?
+            #{t('bikes.did-we-help')}
         .checkbox
           %label
             %input#mark_recovered_can_share_recovery{ type: 'checkbox' }
-            Can we share your story?
+            #{t('bikes.can-we-share')}
         .modal-btn-footer
           .row
             .col-xs-6.col-xs-push-6
-              = submit_tag 'Mark recovered', class: 'btn btn-success'
+              = submit_tag "#{t('bikes.mark-recovered')}", class: 'btn btn-success'
             .col-xs-6.col-xs-pull-6
               %button.btn.btn-secondary{ 'data-dismiss' => 'modal', type: 'button' }
-                Nevermind
+                #{t('common.Nevermindn')}
               
 
 - else
-  - modal_title = 'Oh no!'
+  - modal_title = "#{t('bikes.oh-no')}"
   - modal_body = capture_haml do
     .modal-body
       %p
-        Is your #{@bike.type} actually missing or stolen?
+        #{t('bikes.is-your')} #{@bike.type} #{t('bikes.missing-stolen')}
     .modal-btn-footer
       .row
         .col-xs-6
           %button.btn.btn-secondary{ 'data-dismiss' => 'modal', type: 'button' }
-            Nevermind
+            #{t('common.Nevermindn')}
         .col-xs-6
           %button.btn.btn-danger#mark-stolen-btn{ type: 'button' }
-            Yes, it is!
+            #{t('bikes.yes-it-is')}
 
 / Only one modal if stolen, only one (different) modal if not stolen
 = render partial: '/shared/modal', locals: { title: modal_title, id: 'toggle-stolen', modal_body: modal_body }

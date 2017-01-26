@@ -11,13 +11,13 @@
       .controls
         = f.text_field :serial_number, :required =>true, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off'
       - if @organization.use_additional_registration_field
-        = f.label :additional_registration, "Additional registration number", class: "control-label"
+        = f.label :additional_registration, "#{t('organization.additional-reg-no')}", class: "control-label"
         .controls
           = f.text_field :additional_registration, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off' 
     .has-no-serial.optional-block
       %label
         = f.check_box :has_no_serial, tabindex: -1 
-        Has no serial
+        #{t('organization.has-no-serial')}
 
   .input-group.with-additional-block
     .control-group.select-jsonified
@@ -25,22 +25,22 @@
       .controls
         = f.text_field :manufacturer_id, value: @bike.manufacturer && @bike.manufacturer.name
         %span.help-block
-          Select 'Other' if manufacturer isn't listed
+          #{t('organization.select-other')}
     .hidden-other.control-group.manufacturer-other-input
-      = f.label :manufacturer_other, "Other manufacturer", class: "control-label"
+      = f.label :manufacturer_other, "#{t('organization.other-manu')}", class: "control-label"
       .controls
-        = f.text_field :manufacturer_other, placeholder: "Manufacturer name"
+        = f.text_field :manufacturer_other, placeholder: "#{t('organization.manu-name')}"
 
   .input-group
     .control-group.special-select-single
-      = f.label :year, "Model year", class: "control-label"
+      = f.label :year, "#{t('organization.model-year')}", class: "control-label"
       .controls
         - years = (1900..Time.now.year+1).to_a.reverse.map {|i| [i,i] }
-        = f.select :year, years, selected: Time.now.year, prompt: "Unsure or unknown"
+        = f.select :year, years, selected: Time.now.year, prompt: "#{t('organization.unsure-unknown')}"
     .unknown-year.optional-block
       %label
         %input#bike_unknown_year{ type: 'checkbox', tabindex: -1 }
-        Unknown year
+        #{t('organization.unknown-year')}
         
   .input-group
     .control-group
@@ -50,43 +50,43 @@
 
   .input-group.with-optional-blocks
     .control-group.special-select-single
-      = f.label :primary_frame_color_id, "Frame color", class: "control-label"
+      = f.label :primary_frame_color_id, "#{t('organization.frame-color')}", class: "control-label"
       .controls
         = collection_select( :bike, :primary_frame_color_id, Color.all, :id, :name, required: true, prompt: "Choose color" )
     %a#add-secondary.optional-form-block{data: {target: "#secondary-color", toggle: "#rm-secondary"}}
-      Add a color
+      #{t('organization.add-color')}
     %a#rm-secondary.optional-form-block.rm-block.currently-hidden{data: {target: "#secondary-color", toggle: "#add-secondary"}}
-      Remove color
+      #{t('organization.remove-color')}
     #secondary-color.hidden-other
       .control-group.special-select-single
         %label.control-label
-          Secondary color
+          #{t('organization.second-color')}
         .controls
           = collection_select( :bike, :secondary_frame_color_id, Color.all, :id, :name, prompt: "Choose color" )
       %a#add-tertiary.optional-form-block{data: {target: "#tertiary-color", toggle: "#rm-tertiary"}}
-        Add a color
+        #{t('organization.add-color')}
       %a#rm-tertiary.optional-form-block.rm-block.currently-hidden{data: {target: "#tertiary-color", toggle: "#add-tertiary"}}
-        Remove color
+        #{t('organization.remove-color')}
     #tertiary-color.hidden-other
       .control-group
         %label.control-label
-          Third color
+          #{t('organization.third-color')}
         .controls.special-select-single
           = collection_select( :bike, :tertiary_frame_color_id, Color.all, :id, :name, prompt: "Choose color" )
   .input-group
     .control-group
       %label.control-label{ for: 'bike_owner_email' }
-        Owner's email address
+        #{t('organization.owners-email')}
         = f.email_field :owner_email
   .input-group
     .submit-registration
-      = submit_tag "Register this", class: "button-submit"
+      = submit_tag "#{t('organization.register-this')}", class: "button-submit"
       = collection_select( :bike, :cycle_type_id, CycleType.all, :id, :name, required: true)
   .input-group
     %h3
       Optional additions
     .control-group.special-select-single
-      = f.label :frame_material_id, "Primary frame material", class: "control-label"
+      = f.label :frame_material_id, "#{t('organization.primary-frame')}", class: "control-label"
       .controls
         = collection_select( :bike, :frame_material_id, FrameMaterial.all, :id, :name, prompt: "Choose material" )
   .input-group
@@ -96,16 +96,16 @@
         = collection_select( :bike, :handlebar_type_id, HandlebarType.all, :id, :name, label: "Handlebar Style", required: true, prompt: "Choose handlebar" )
   .input-group
     .control-group
-      = f.label :description, "Other defining features", class: "control-label"
+      = f.label :description, "#{t('organization.other-features')}", class: "control-label"
       .controls
         = f.text_area :description, rows: 3, placeholder: "Any extra words?"
   .input-group.form-foot
     .control-group.form-photo-group
       - if @b_param.image.present? or @b_param.image_tmp.present?
         %strong
-          Image has been uploaded
+          #{t('organization.img-uploaded')}
       - else
         .filefield-button
-          Choose photo
+          #{t('organization.choose-photo')}
           = f.file_field :image
         #filepath

@@ -23,36 +23,36 @@
             %a.follow-link.logo{ href: root_path }
               = image_tag "logo.svg"
               %h2
-                Bike Index
+                #{t('shared.header.title')}
         %nav.content-nav
           %ul.content-sections{ class: "#{@active_section}_menu"}
             %li{ class: content_nav_class("about") }
-              = active_link "About<span> the Bike Index</span>", about_path
+              = active_link "#{t('common.About')}<span> #{t('layouts.content.the-bike-index')}</span>", about_path
               %ul
                 %li
-                  = active_link "Bike Index news", news_index_path, match_controller: true
+                  = active_link "#{t('layouts.content.bi-news')}", news_index_path, match_controller: true
                 %li
-                  = active_link "Bike Index partner organizations", where_path
+                  = active_link "#{t('layouts.content.bi-partner-organizations')}", where_path
 
             %li{ class: content_nav_class("resources") }
-              = active_link "Resources", resources_path
+              = active_link "#{t('common.Resources')}", resources_path
               %ul
                 %li
-                  = active_link "Protect your bike", protect_your_bike_path
+                  = active_link "#{t('layouts.content.protect-your-bike')}", protect_your_bike_path
                 %li
-                  = active_link "Information about bicycle serial numbers", serials_path
+                  = active_link "#{t('layouts.content.info-serial')}", serials_path
                 %li
-                  = active_link "List of manufacturers", manufacturers_path
+                  = active_link "#{t('layouts.content.list-manufacturers')}", manufacturers_path
                 %li
-                  = active_link "Image & design assets", image_resources_path
+                  = active_link "#{t('layouts.content.images-assets')}", image_resources_path
                       
             %li.contact-nav-btns{ class: content_nav_class("contact") }
-              = active_link "Help", help_path
+              = active_link "#{t('common.Help')}", help_path
               %ul
                 %li
-                  = active_link "Contact", help_path(anchor: 'contact_us_section')
+                  = active_link "#{t('common.Contact')}", help_path(anchor: 'contact_us_section')
                 %li
-                  = active_link "Sign up a shop or organization", vendor_signup_path
+                  = active_link "#{t('layouts.content.signup-shop-org')}", vendor_signup_path
                 / %li
                 /   = active_link "Lightspeed Retail integration", lightspeed_integration_path
                 

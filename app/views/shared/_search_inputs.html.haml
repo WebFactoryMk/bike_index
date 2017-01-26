@@ -2,7 +2,7 @@
   - opt_vals = @selected_query_items_options.map { |i| i.is_a?(String) ? [i, i] : [i['text'], i['search_id']]  }
   = select_tag :query_items,                                      |
     options_for_select(opt_vals, selected: opt_vals.map(&:last)), |
-    placeholder: 'Search bike descriptions',                      |
+    placeholder: "#{t('common.search-bike-desc')}",                      |
     class: 'form-control query-field',                            |
     multiple: true
 

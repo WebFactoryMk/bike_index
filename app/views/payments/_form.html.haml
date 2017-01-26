@@ -6,13 +6,13 @@
     .col-xs-12
       %h3
         - if @is_payment
-          Pay Bike Index
+          #{t('payments.pay-bike-index')}
         - else
-          Donate today
+          #{t('payments.donate-today')}
     .select-amount
       
       - unless @is_payment
-        %p Select an amount
+        %p #{t('payments.select-amount')}
       %form#bikeindex-stripe-initial-form
         %ul.row.amount-list
           - if @is_payment # If payment, have one non-arbitrary button
@@ -29,7 +29,7 @@
               .input-group
                 .input-group-addon
                   $
-                %input#arbitrary-amount.form-control{ type: 'number', min: '0', placeholder: 'Other amount', step: 0.01, value: @initial_amount, class: ('active' if @initial_amount) }
+                %input#arbitrary-amount.form-control{ type: 'number', min: '0', placeholder: "#{t('payments.other-amount')}", step: 0.01, value: @initial_amount, class: ('active' if @initial_amount) }
         .next-step
           = submit_tag 'next  >', class: 'btn btn-primary'
   <script src="https://checkout.stripe.com/checkout.js"></script>

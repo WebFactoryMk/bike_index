@@ -1,5 +1,5 @@
-Hello #{'Welcome to the Bike Index' if @new_user == true}
+  #{t('common.Hello')} #{"#{t('organized.welcome')}" if @new_user == true}
 
-#{@inviter.display_name} has indicated that you are a member of #{@organization.name}.
+#{@inviter.display_name} #{t('organized.has-indicated')} #{@organization.name}.
 
-Sign up or sign in to BikeIndex.org to join #{@organization.name}!
+#{t('users.signup-signin')} #{@organization.name}!

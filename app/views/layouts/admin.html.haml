@@ -19,40 +19,40 @@
       .inner-recep
         - if current_user.superuser?
           %h2.new-title 
-            = admin_nav_link "Go hard", admin_root_path
+            = admin_nav_link "#{t('layouts.admin.Go-hard')}", admin_root_path
           %ul
             %li
-              = admin_nav_link "Organizations", admin_organizations_url
+              = admin_nav_link "#{t('common.Organizations')}", admin_organizations_url
 
             %li
-              = admin_nav_link "Users", admin_users_url
+              = admin_nav_link "#{t('common.Users')}", admin_users_url
 
             %li
-              = admin_nav_link "Memberships", admin_memberships_url
+              = admin_nav_link "#{t('common.Memberships')}", admin_memberships_url
 
             %li
-              = admin_nav_link "Manufacturers", admin_manufacturers_url
+              = admin_nav_link "#{t('common.Manufacturers')}", admin_manufacturers_url
 
             %li
-              = admin_nav_link "Bikes", admin_bikes_url
+              = admin_nav_link "#{t('common.Bikes')}", admin_bikes_url
 
             %li
-              = admin_nav_link "Invitations", admin_invitations_url
+              = admin_nav_link "#{t('common.Invitations')}", admin_invitations_url
 
             %li
-              = admin_nav_link "News", admin_news_index_url
+              = admin_nav_link "#{t('common.News')}", admin_news_index_url
             %li
-              = admin_nav_link "Stolen", admin_stolen_bikes_url
+              = admin_nav_link "#{t('common.Stolen')}", admin_stolen_bikes_url
             / %li
             /   = admin_nav_link "Recoveries", admin_recoveries_url
             %li
-              = admin_nav_link "Recovery displays", admin_recovery_displays_url
+              = admin_nav_link "#{t('layouts.admin.Recovery-displays')}", admin_recovery_displays_url
         - elsif current_user.is_content_admin?
           %h2.new-title 
-            = admin_nav_link "Go hard", admin_news_index_url
+            = admin_nav_link "#{t('layouts.admin.Go-hard')}", admin_news_index_url
           %ul
             %li
-              = admin_nav_link "News", admin_news_index_url
+              = admin_nav_link "#{t('common.News')}", admin_news_index_url
 
 
 

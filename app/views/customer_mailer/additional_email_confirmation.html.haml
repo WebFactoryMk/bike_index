@@ -1,19 +1,19 @@
 %h2.center-text
-  Please confirm your additional email
+  #{t('customer-mailer.confirm-addit')}
   %br
   %small
     %em
       = @user_email.email
 
 %p.center-text{ style: 'margin-bottom: 3em;' }
-  #{@user.display_name} would like to merge this email into their account (#{@user.email}).
+  #{@user.display_name} #{t('customer-mailer.would-merge')} (#{@user.email}).
 
 = link_to 'Verify email', confirm_user_email_url(id: @user_email.id, confirmation_token: @user_email.confirmation_token), class: 'binx-button'
 
 %p.center-text.less-strong
-  Click the <em>Verify email</em> button to merge these accounts on BikeIndex.org!
+  #{t('customer-mailer.click-the')} <em>#{t('customer-mailer.verify')}</em> #{t('customer-mailer.button-to')}
 
 %hr
 
 %p.center-text
-  If you didn't request this merge please reply to this email and tell us.
+  #{t('customer-mailer.if-you-dont')}

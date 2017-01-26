@@ -4,8 +4,8 @@
       - if @text.present?
         = @text
       - else
-        My Indexed
-        = "Bike".pluralize(@bikes.count)
+        #{t('users.my-indexed')}
+        = "#{t('misc.kids', :count => @bikes.count)}"
   .bi-slide-over
   - if @bikes.count > 1
     %a#bi-slide-prev.controleys

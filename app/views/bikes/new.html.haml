@@ -1,4 +1,4 @@
-- serial_help_content = "Every bike has a unique serial number, it's how they are identified. To learn more or see some examples, go to #{link_to 'our serial page', serials_url, target: '_blank' } <small>(opens in a separate window)</small>."
+- serial_help_content = "#{t('bikes.every-bike-has')} #{link_to "#{t('bikes.our-serial-page')}", serials_url, target: '_blank' } <small>(#{t('bikes.opens-new')})</small>."
 
 .form-well-header.container
   %h1
@@ -18,7 +18,7 @@
       .col-lg-8.offset-lg-2.form-well
         .form-wrap
           .form-group.row.unnested-field
-            = f.label :cycle_type_id, 'This is a', class: 'form-well-label'
+            = f.label :cycle_type_id, "#{t('bikes.this-is')}", class: 'form-well-label'
             .form-well-input.fancy-select.unfancy
               = f.collection_select(:cycle_type_id, CycleType.all, :id, :name, required: true, class: 'form-control')
 
@@ -27,20 +27,20 @@
             .form-well-input
               #serial-input
                 = f.text_field :serial_number, required: true, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', placeholder: 'highly recommended', class: 'form-control'
-                %a.inline-input-help{ title: 'Serial help', data: { toggle: 'popover', content: serial_help_content } }
+                %a.inline-input-help{ title: "#{t('bikes.serial-help')}", data: { toggle: 'popover', content: serial_help_content } }
                   ?
               #made-without-serial-input
                 %label
                   = f.check_box :made_without_serial
-                  Made without serial
+                  #{t('bikes.Made-without-serial')}
               .below-input-help#made-without-serial-help
                 .hidden-other
                   %a{ data: { toggle: 'modal', target: '#made-without-serial-modal' } }
-                    This #{@bike.type} was made without a serial number
+                    #{t('common.This')} #{@bike.type} #{t('bikes.made-without')}
             .right-input-help
               %label
                 = f.check_box :has_no_serial, tabindex: -1
-                Missing serial
+                #{t('bikes.missing-serial')}
 
           .related-fields
             .form-group.row
@@ -49,9 +49,9 @@
                 - initial = @bike.manufacturer && { id: @bike.manufacturer.id, text: @bike.manufacturer.name }.to_json
                 = f.text_field :manufacturer_id, value: @bike.manufacturer && @bike.manufacturer.name, class: 'form-control unfancy', data: { initial: initial }
                 %span.below-input-help
-                  Select 'Other' if manufacturer doesn't show up when entered
+                  #{t('bikes.select-other')}
             .form-group.hidden-other.row
-              = f.label :manufacturer_other, 'Other manufacturer', class: 'form-well-label'
+              = f.label :manufacturer_other, "#{t('organization.other-manu')}", class: 'form-well-label'
               .form-well-input
                 = f.text_field :manufacturer_other, class: 'form-control'
 
@@ -59,11 +59,11 @@
             = f.label :year, 'Model year', class: 'form-well-label'
             .form-well-input
               - years = (1900..Time.now.year+1).to_a.reverse.map { |i| [i,i] }
-              = f.select :year, years, prompt: "Unsure or unknown", selected: @bike.year || Time.now.year
+              = f.select :year, years, prompt: "#{t('organization.unsure-unknown')}", selected: @bike.year || Time.now.year
             .right-input-help
               %label
                 %input#bike_unknown_year{ type: 'checkbox', tabindex: -1 }
-                Unknown year
+                #{t('organization.unknown-year')}
 
           .form-group.row.unnested-field
             = f.label :frame_model, class: 'form-well-label'
@@ -89,37 +89,37 @@
               - email = @bike.owner_email || current_user && current_user.email
               = f.email_field :owner_email, value: email, required: true, placeholder: 'required', class: 'form-control'
       .new-bike-submit-wrapper
-        = submit_tag 'Register', class: 'btn btn-lg btn-primary'
+        = submit_tag "#{t('common.Register')}", class: 'btn btn-lg btn-primary'
 
 - modal_body = capture_haml do
   .modal-body
     %p
-      Very
+      #{t('common.Very')}
       %em
-        very
-      few bikes are made without serials. Unless this #{@bike.type}:
+        #{t('common.very')}
+      #{t('bikes.few-bikes')} #{@bike.type}:
     %ul
       %li
-        Was made before 1970
+        #{t('bikes.made-before')}
       %li.li-or
-        \- or -
+        \- #{t('common.or')} -
       %li
-        Is a handmade frame
+        #{t('bikes.handmade-frame')}
     %p
-      It probably has a serial number.
+      #{t('bikes.probably-has')}
     %p 
-      Read about #{link_to 'how to find your serial number', serials_url, target: '_blank' }
+      #{t('bikes.read-about')} #{link_to "#{t('bikes.how-to-find')}", serials_url, target: '_blank' }
       %small
-        (opens in a separate window)
+        (#{t('bikes.opens-new')})
   .modal-btn-footer
     .row
       .col-xs-6
         %button.btn.btn-secondary{'data-dismiss' => 'modal', type: 'button'}
-          Nevermind
-        I just don't know the serial
+          #{t('common.Nevermind')}
+        #{t('bikes.dont-know-serial')}
       .col-xs-6
         %button.btn.btn-danger#made-without-serial-button{type: 'button'}
-          I'm 100% sure
-        This #{@bike.type} was made without a serial
+          #{t('bikes.im-sure')}
+        #{t('common.This')} #{@bike.type} #{t('bikes.made-without')}
 
-= render partial: '/shared/modal', locals: { title: 'Are you certain?', id: 'made-without-serial-modal', modal_body: modal_body }
+= render partial: '/shared/modal', locals: { title: "#{t('bikes.are-you-certain')}", id: 'made-without-serial-modal', modal_body: modal_body }

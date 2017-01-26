@@ -32,7 +32,7 @@
     %h1
       - if @bike.stolen
         %span.stolen-color
-          Stolen
+          #{t('common.Stolen')}
       = @bike.title
 
   - if @stolen_record.present?
@@ -40,19 +40,19 @@
       - if @stolen_record.theft_description.present?
         %p
           %em
-            Description of theft
+            #{t('bikes.desc-theft')}
           = @stolen_record.theft_description.truncate(300)
       .bike-details
         %table.table.table-striped
           %tbody
             %tr
               %td.td-title
-                Date Stolen
+                #{t('bikes.date-stolen')}
               %td
                 = @stolen_record.date_stolen.strftime("%m-%d-%Y")
             %tr
               %td.td-title
-                Location
+                #{t('common.Location')}
               %td
                 = @stolen_record.address
 
@@ -62,27 +62,27 @@
             - if @stolen_record.phone.present?
               %tr
                 %td.td-title
-                  Owner phone
+                  #{t('bikes.owner-phone')}
                 %td
                   %a.phone-number-link{ href: "tell:#{@stolen_record.phone}" }
                     = @stolen_record.display_phone
             - if @stolen_record.police_report_number.present?
               %tr
                 %td.td-title
-                  Police report
+                  #{t('bikes.police-report')}
                 %td
                   = @stolen_record.police_report_number
             - if @stolen_record.police_report_department.present?
               %tr
                 %td.td-title
-                  Department
+                  #{t('common.Department')}
                 %td
                   = @stolen_record.police_report_department
   - if @bike.description.present?
     .description
       %p
         %em
-          Bike description:
+          #{t('bikes.bike-desc')}:
         - if @bike.stolen
           = @bike.description.truncate(500)
         - else
@@ -93,7 +93,7 @@
         %tbody
           %tr
             %td.td-title
-              Registered
+              #{t('common.Registered')}
             %td
               = @bike.created_at.strftime("%m-%d-%Y")
               to 
@@ -103,53 +103,53 @@
                 = @bike.owner_email
           %tr
             %td.td-title
-              Bike Serial
+              #{t('bikes.bike-serial')}
             %td
               = @bike.serial_display
           %tr
             %td.td-title
-              Manufacturer
+              #{t('common.Manufacturer')}
             %td
               = @bike.mnfg_name
           - if @bike.frame_model.present?
             %tr
               %td.td-title
-                Model
+                #{t('common.Model')}
               %td
                 = @bike.frame_model
           - unless @bike.stolen and @stolen_record.present?
             - if @bike.frame_size.present?
               %tr
                 %td.td-title
-                  Frame size
+                  #{t('bikes.frame-size')}
                 %td
                   = @bike.frame_size
           - if @bike.paint.present?
             %tr
               %td.td-title
-                Paint
+                #{t('common.Paint')}
               %td
                 = @bike.paint.name
           - else
             %tr
               %td.td-title
-                = 'Color'.pluralize(@bike.frame_colors.count)
+                = "#{t('common.Colors', :count => @bike.frame_colors.count)}"
               %td
                 = @bike.frame_colors.to_sentence
           - unless @bike.stolen and @stolen_record.present?
             - if @bike.front_gear_type.present?
               %tr
                 %td.td-title
-                  Front gears
+                  #{t('bikes.front-gears')}
                 %td
                   = @bike.front_gear_type.name
             - if @bike.rear_gear_type.present?
               %tr
                 %td.td-title
-                  Rear gears
+                  #{t('bikes.rear-gears')}
                 %td
                   = @bike.rear_gear_type.name
-                  = "with coaster brake" if @bike.coaster_brake
+                  = "#{t('bikes.with-coaster-brake')}" if @bike.coaster_brake
                   - if @bike.components.where(ctype_id: Ctype.find_by_name('hub').id).present?
                     - hubs = @bike.components.where(ctype_id: Ctype.find_by_name('hub').id)
                     - if hubs.where(rear: true)
@@ -164,29 +164,29 @@
           %tbody
             %tr
               %td.td-title
-                Front wheel
+                #{t('bikes.front-wheel')}
               %td
                 = @bike.front_wheel_size.name if @bike.front_wheel_size.present?
                 with
                 - if @bike.front_tire_narrow
-                  narrow tires
+                  #{t('bikes.narrow-tires')}
                 - else
-                  wide tires
+                  #{t('bikes.wide-tires')}
             - if @bike.rear_wheel_size.present?
               %tr
                 %td.td-title
-                  Rear wheel
+                  #{t('bikes.rear-wheel')}
                 %td
                   = @bike.rear_wheel_size.name
                   with
                   - if @bike.rear_tire_narrow
-                    narrow tires
+                    #{t('bikes.narrow-tires')}
                   - else
-                    wide tires
+                    #{t('bikes.wide-tires')}
             - if @bike.components.where(ctype_id: Ctype.find_by_name('saddle').id).present?
               %tr
                 %td.td-title
-                  Saddle
+                  #{t('common.Saddle')}
                 %td
                   - seat = @bike.components.where(ctype_id: Ctype.find_by_name('saddle').id).first
                   = seat.cmodel_name if seat.cmodel_name.present?
@@ -201,10 +201,10 @@
           %img{ src: "https://files.bikeindex.org/logo.png" }
         .index-text
           %h2
-            Registration
+            #{t('common.Registration')}
           %h3
-            printout
+            #{t('common.printout')}
           %p
-            online @
+            #{t('common.online')} @
             %a{href: bike_url(@bike) }
               bikeindex.org#{bike_path(@bike)}

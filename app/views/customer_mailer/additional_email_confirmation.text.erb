@@ -1,10 +1,10 @@
-** <%= @user.display_name %> would like to merge this email into their account **
+** <%= @user.display_name %> <%=t :customer-mailer.would-merge %> **
 
-Go to this url if you want to confirm this email:
+<%=t :customer-mailer.goto-url %>
 
 <%= confirm_user_email_url(id: @user_email.id, confirmation_token: @user_email.confirmation_token) %>
 
 
 ------
 
-If you didn't request this merge please reply to this email and tell us.
+<%=t :customer-mailer.if-you-dont %>

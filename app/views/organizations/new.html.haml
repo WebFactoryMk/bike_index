@@ -1,13 +1,13 @@
 .vendor-signup
   %h2.padded
-    Want to sign up?
+    #{t('organization.want-to-signup')}
   %article.vendor-signup-form
     %p
-      It's free.
+      #{t('layouts.reg.its-free')}
     %p
-      There are no commitments.
+      #{t('organization.there-are-no-commitments')}
     %p
-      We just want to stop bike theft.
+      #{t('organization.we-just-want')}
     
     = render "new_form"
 
@@ -16,33 +16,33 @@
   %header.padded
     .header-text
       %h1
-        Are you a bike shop? 
+        #{t('organization.are-you-a-bike')}
       %h1
-        A biking organization?
+        #{t('organization.a-biking-org')}
     .bike-shop-image
       = image_tag "bike-shop.png", alt: "Bike shop"
   %article
     %p
-      The Bike Index gives you the ability to quickly and easily register bikes for your customers or members &mdash; <strong>for free</strong>.
+      #{t('organization.the-bi-gives')} &mdash; <strong>#{t('organization.for-free')}</strong>.
     %p
-      How it works: 
+      #{t('welcome.index.how-it-works')}:
 
     %ul.fancy-bullets
       %li
         %span.green-bullet
         %p
-          Fill in basic information about a bike and the customer's email.
+          #{t('organization.index.fill-in-basic')}
       %li
         %span.green-bullet
         %p
-          We send them an email with the information about their bike.
+          #{t('organization.index.we-send-them-email')}
       
     %p
-      That's it!
+      #{t('organization.index.thats-it')}
     %p
-      The customer doesn't need to do anything else either. If they want to, they can sign in and upload photos or add details to their bike &mdash; but even if they don't, they have a permanent record of their bike.
+      #{t('organization.the-customer-doesnt1')} &mdash; #{t('organization.the-customer-doesnt2')}
     %p
-      If their bike is ever stolen they have all the information they need to file a police report, make an insurance claim and, most importantly, they can mark their bike stolen on the Bike Index &mdash; where it has the best chance of being found.
+      #{t('organization.if-their-bike1')} &mdash; #{t('organization.if-their-bike2')}
 
   / %hr.padded
   / %h2.padded.lightspeed-logod
@@ -59,9 +59,9 @@
   %hr.padded
 
   %h2.padded
-    Batch registration
+    #{t('organization.batch-reg')}
   %article
     %p
-      If you have a spreadsheets of serial numbers or want to set up batch uploading in some other way, #{link_to "contact us", "mailto:seth@bikeindex.org"}.
+      #{t('organization.if-youve-spreadsheet')} #{link_to "#{t('organization.contact-us')}", "mailto:seth@bikeindex.org"}.
 
 = render '/shared/content_footer_ad'

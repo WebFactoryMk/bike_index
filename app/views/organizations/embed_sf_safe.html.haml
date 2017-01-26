@@ -3,8 +3,8 @@
     .alert.alert-error
       %a.close{"data-dismiss" => "alert"} ×
       %h4
-        Please fix the following 
-        = pluralize(@bike.errors.count, "error")
+        #{t('organization.please-fix')}
+        = "#{t('common.errors', :count => @bike.errors.count)}"
       %ul
         - @bike.errors.full_messages.each do |msg|
           %li
@@ -21,9 +21,9 @@
     .has-no-serial.optional-block
       %label
         = check_box_tag "use_index",  1, tabindex: -1 
-        Use the 
-        = link_to "Bike Index", "https://bikeindex.org"
-        to store information about this cycle.
+        #{t('organization.use-the')}
+        = link_to "#{t('common.Bike-Index')}", "https://bikeindex.org"
+        #{t('organization.to-store-info')}.
   
   .input-group{ style: "border-bottom: 0; padding: 1.2em 0 0 10px;"}
     .control-group
@@ -34,9 +34,9 @@
       %label
         = f.check_box :has_no_serial, tabindex: -1 
         - if @bike.stolen?
-          Unknown
+          #{t('common.Unknown')}
         - else
-          Has no serial
+          #{t('organization.has-no-serial')}
 
   .input-group.with-additional-block{ style: "border-bottom: 0; padding: 1.2em 0 0 10px;"}
     .control-group.chosen-select
@@ -44,17 +44,17 @@
       .controls
         = collection_select( :bike, :manufacturer_id, Manufacturer.frames, :id, :name, :required =>true, prompt: "Choose manufacturer")
         %span.help-block
-          Select 'Other' if manufacturer isn't listed
+          #{t('organization.select-other')}
     %p.other-value
       = Manufacturer.other.id
     .hidden-other.control-group.manufacturer-other-input
-      = f.label :manufacturer_other, "Other manufacturer", class: "control-label"
+      = f.label :manufacturer_other, "#{t('organization.other-manun')}", class: "control-label"
       .controls
         = f.text_field :manufacturer_other, placeholder: "Manufacturer name"
 
   .input-group{ style: "border-bottom: 0; padding: 1.2em 0 0 10px;"}
     .control-group.chosen-select
-      = f.label :year, "Model year", class: "control-label"
+      = f.label :year, "#{t('organization.model-year')}", class: "control-label"
       .controls
         - years = (1900..Time.now.year+1).to_a.reverse.map {|i| [i,i] }
         = f.select :year, years, selected: Time.now.year
@@ -67,27 +67,27 @@
 
   .input-group.with-optional-blocks.form-foot{ style: "border-bottom: 0; padding: 1.2em 0 0 10px;"}
     .control-group
-      = f.label :primary_frame_color_id, "Frame color", class: "control-label"
+      = f.label :primary_frame_color_id, "#{t('organization.frame-color')}", class: "control-label"
       .controls
         = collection_select( :bike, :primary_frame_color_id, Color.all, :id, :name, required: true, prompt: "Choose color" )
     %a#add-secondary.optional-form-block{data: {target: "#secondary-color", toggle: "#rm-secondary"}}
-      Add a color
+      #{t('organization.add-color')}
     %a#rm-secondary.optional-form-block.rm-block.currently-hidden{data: {target: "#secondary-color", toggle: "#add-secondary"}}
-      Remove color
+      #{t('organization.remove-color')}
     #secondary-color.hidden-other
       .control-group
         %label.control-label
-          Secondary color
+          #{t('organization.second-color')}
         .controls
           = collection_select( :bike, :secondary_frame_color_id, Color.all, :id, :name, prompt: "Choose color" )
       %a#add-tertiary.optional-form-block{data: {target: "#tertiary-color", toggle: "#rm-tertiary"}}
-        Add a color
+        #{t('organization.add-color')}
       %a#rm-tertiary.optional-form-block.rm-block.currently-hidden{data: {target: "#tertiary-color", toggle: "#add-tertiary"}}
-        Remove color
+        #{t('organization.remove-color')}
     #tertiary-color.hidden-other
       .control-group
         %label.control-label
-          Third color
+          #{t('organization.third-color')}
         .controls
           = collection_select( :bike, :tertiary_frame_color_id, Color.all, :id, :name, prompt: "Choose color" )
 

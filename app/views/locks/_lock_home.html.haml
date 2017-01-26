@@ -1,9 +1,9 @@
 - if @locks.any?
   %header.with-subtitle
     %h3
-      Your locks
+      #{t('locks.your-locks')}
     %p.sharing-links
-      = link_to "Add a new lock", new_lock_url
+      = link_to "#{t('locks.add-new')}", new_lock_url
 
 - if @locks.any?
   %ul.lock-boxes
@@ -21,21 +21,21 @@
 
 - else
   %h2
-    Save information about your bike lock!
+    #{t('locks.save-info')}
   %p
-    Lock keys often have serial numbers, so you can order replacements if you lose the keys.
+    #{t('locks.lock-keys')}
   %p
-    If you want, you can
+    #{t('locks.if-you-wantn')}
     %strong
-      save the serial numbers of your keys
-    on the Bike Index&mdash;so you won't be out of luck if you lose them.
+      #{t('locks.save-serials')}
+    #{t('locks.on-the1')}&mdash;#{t('locks.on-the2')}
   %p
-    You can also
+    #{t('locks.you-can-also')}
     %strong
-      record your lock combinations.
+      #{t('locks.record-lock')}
   %p
     %em
-      Any lock information you enter on the Bike Index is private and visible only to you.
+      #{t('locks.any-lock-info')}
 
   %p
-    = link_to "Save information about a lock", new_lock_url, class: "button-blue"
+    = link_to "#{t('locks.save-info-lock')}", new_lock_url, class: "button-blue"

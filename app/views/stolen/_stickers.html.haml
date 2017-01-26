@@ -1,23 +1,23 @@
 %h2.contribute-sbr
-  Contribute!
+  #{t('stolen.Contribute')}!
 %p
-  I've been sending out stickers to help promote StolenBikeRegistry for many years now. They're a great way of showing your support for the site while showing your distaste for bike thieves!
+  #{t('stolen.stickers-p1')}
     
 %p
-  Anyone who helps recover a bike, or who gets their bike back also gets a free sticker
+  #{t('stolen.stickers-p2')}
 %p
-  You can use the links below to buy SBR stickers, and all funds go towards running and maintaining the website: server fees, postage, more sticker printing, flyer printing, etc. As we run this whole website out of pocket, your contributions are 
+  #{t('stolen.stickers-p3')}
   %strong
-    greatly
-  appreciated.
+    #{t('common.greatly')}
+  #{t('common.appreciated')}.
 
 .sticker-wells
   .well.sticker-well
     %h3
-      Death To Bike Thieves
+      #{t('stolen.death-to-bt')}
     %p
-      By and far the single most popular sticker I've ever created, the "death to bike thieves" sticker is short, sweet, and to the point. 
-    = image_tag 'stolen/death_sticker.jpg', alt: "death to bike thieves", class: 'sticker-image'
+      #{t('stolen.by-far-most-popular')}
+    = image_tag 'stolen/death_sticker.jpg', alt: "#{t('stolen.death-to-bt-lowercase')}", class: 'sticker-image'
     :plain
       <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
         <input type="hidden" name="cmd" value="_s-xclick">
@@ -40,9 +40,9 @@
   - fing = '#@%!ing'
   .well.sticker-well
     %h3
-      I Want My #{fing} Bike Back
+      #{t('stolen.i-want-my')} #{fing} #{t('stolen.bike-back')}
     %p
-      Because, seriously ... I just want my #{fing} bike back
+      #{t('stolen.because-seriously')} #{fing} #{t('stolen.bike-back-lowercase')}
     = image_tag 'stolen/bike_back_sticker.jpg', alt: "I Want My #{fing} Bike Back", class: 'sticker-image'
     :plain
       <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -63,6 +63,6 @@
         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
 %p
-  If you would like more than 20 stickers, please email me directly at 
+  #{t('stolen.if-you-want-more')}
   %a{ href: 'mailto:bryan@bikeindex.org'}
     bryan@stolenbicycleregistry.org

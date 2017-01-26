@@ -13,9 +13,9 @@
           .control-label
             = f.check_box :vendor_terms_of_service
           .controls
-            I agree to the Bike Index 
+            #{t('users.i-agree-to-bi')}
             %strong
-              Terms of Service for Vendors.
+              #{t('users.terms-for-vendors')}
     .agree-action
       .control-group
-        = f.submit "Submit", class: 'button-blue'
+        = f.submit "#{t('common.Submit')}", class: 'button-blue'

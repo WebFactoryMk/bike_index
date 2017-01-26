@@ -14,9 +14,9 @@
           Bikes
         %ul.organized-submenu
           %li
-            = active_link (current_organization.is_paid ? 'Search' : 'List'), organization_bikes_path(organization_id: current_organization.to_param), class_name: 'nav-link'
+            = active_link (current_organization.is_paid ? "#{t('common.Search')}" : "#{t('common.List')}"), organization_bikes_path(organization_id: current_organization.to_param), class_name: 'nav-link'
           %li
-            = active_link 'Add a bike', new_organization_bike_path(current_organization), class_name: 'nav-link'
+            = active_link "#{t('layouts.application.add-a-bike')}", new_organization_bike_path(current_organization), class_name: 'nav-link'
       - if current_user.is_admin_of?(current_organization)
         %li
           - manage_active = %w(users manage emails).include?(controller_name)
@@ -24,16 +24,16 @@
             Manage
           %ul.organized-submenu
             %li
-              = active_link 'Users', organization_users_path(organization_id: current_organization.to_param), class_name: 'nav-link', match_controller: true
+              = active_link "#{t('common.Users')}", organization_users_path(organization_id: current_organization.to_param), class_name: 'nav-link', match_controller: true
             %li
-              = active_link 'Organization', organization_manage_index_path(organization_id: current_organization.to_param), class_name: 'nav-link'
+              = active_link "#{t('common.Organization')}", organization_manage_index_path(organization_id: current_organization.to_param), class_name: 'nav-link'
             %li
-              = active_link 'Locations', locations_organization_manage_index_path(organization_id: current_organization.to_param), class_name: 'nav-link'
+              = active_link "#{t('common.Locations')}", locations_organization_manage_index_path(organization_id: current_organization.to_param), class_name: 'nav-link'
               / - if current_organization.is_paid
               /   %li
               /     = active_link 'Emails', organization_emails_path(organization_id: current_organization.to_param), class_name: 'nav-link', match_controller: true
               %li
-                = active_link 'Dev resources', dev_organization_manage_index_path(organization_id: current_organization.to_param), class_name: 'nav-link'
+                = active_link "#{t('common.Dev-settings')}", dev_organization_manage_index_path(organization_id: current_organization.to_param), class_name: 'nav-link'
 
 .organized-wrap
   .container

@@ -1,23 +1,23 @@
 .organized-page-header
   %h1
-    Edit membership for
+    #{t('organized.edit-membership')}
     %em
       = @name
   %p
     - id = (@organization_invitation || @membership).id
-    = link_to 'remove from organization', organization_user_path(id: id, organization_id: current_organization.to_param, is_invitation: @is_invitation), method: :delete, confirm: "Are you sure you want to remove #{@name} from #{current_organization.name}? (They will still be to use their personal account)", class: 'btn btn-danger'
+    = link_to 'remove from organization', organization_user_path(id: id, organization_id: current_organization.to_param, is_invitation: @is_invitation), method: :delete, confirm: "#{t('organized.are-you-sure1')} #{@name} #{t('common.from')} #{current_organization.name}? (#{t('organized.they-will-still')})", class: 'btn btn-danger'
   - if @is_invitation
     %p
-      Invited
+      #{t('common.Invited')}
       %strong
         #{l @organization_invitation.created_at, format: :short_with_year},
     %p
-      but #{@organization_invitation.invitee_email}
+      #{t('common.butt')} #{@organization_invitation.invitee_email}
       %strong
-        has still not signed up
+        #{t('organized.has-still-not')}
   - else
     %p
-      Joined
+      #{t('common.Joined')}
       %strong
         = l @membership.created_at, format: :short_with_year
 
@@ -25,32 +25,32 @@
   = form_for @organization_invitation, { as: :organization_invitation, url: organization_user_path(id: @organization_invitation.id, organization_id: current_organization.to_param, is_invitation: @is_invitation), action: 'update', html: { class: 'organized-form' } } do |f|
 
     .form-group.row
-      = f.label :invitee_email, 'Email', class: 'org-form-label'
+      = f.label :invitee_email, "#{t('common.Email')}", class: 'org-form-label'
       .col-sm-4
         %p.static-form-control
           = @organization_invitation.invitee_email
           %br
           %em
             %small.text-muted
-              Incorrect email? Delete this membership and resend.
+              #{t('organized.incorrect-email')}.
 
     .form-group.row
-      = f.label :invitee_name, 'Name', class: 'org-form-label'
+      = f.label :invitee_name, "#{t('common.Name')}", class: 'org-form-label'
       .col-sm-4
         = f.text_field :invitee_name, required: true, class: 'form-control'
 
     .form-group.row
       %label.org-form-label
-        Membership type
+        #{t('organized.Membership-type')}
       .col-sm-4
         .radio
           %label
             = f.radio_button :membership_role, Membership.membership_types.first
-            Admin of organization
+            #{t('users.admin-of-org')}
         .radio
           %label
             = f.radio_button :membership_role, Membership.membership_types.second
-            Member of organization
+            #{t('users.member-of-org')}
 
     .form-group.row
       .col-sm-4.col-sm-push-4
@@ -61,24 +61,24 @@
 
     .form-group.row
       %label.org-form-label
-        Email
+        #{t('common.Email')}
       .col-sm-4
         %p.static-form-control
           = @membership.user.email
 
     .form-group.row
       %label.org-form-label
-        Membership type
+        #{t('organized.Membership-type')}
       .col-sm-4
         .radio
           %label
             = f.radio_button :role, Membership.membership_types.first
-            Admin of organization
+            #{t('users.admin-of-org')}
         .radio
           %label
             = f.radio_button :role, Membership.membership_types.second
-            Member of organization
+            #{t('users.member-of-org')}
 
     .form-group.row
       .col-sm-4.col-sm-push-4
-        = f.submit 'Update', class: 'btn btn-success btn-lg'
+        = f.submit "#{t('common.Update')}", class: 'btn btn-success btn-lg'

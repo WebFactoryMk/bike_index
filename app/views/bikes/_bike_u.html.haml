@@ -8,29 +8,29 @@
             = link_to bike_u.title_u, bike_u.list_link_url(target)
           %p
             %span.attr-title
-              Serial
+              #{t('common.Serial')}
             %span.serial-text
               = bike_u.serial_display
           %p
             %span.attr-title
-              Colors
+              #{t('common.Colors')}
             = bike_u.frame_colors.to_sentence
         - if bike_u.stolen
           .theft-information
             %h3
-              Status:
+              #{t('common.Status')}:
               - if bike_u.recovered
-                Recovered/Found
+                #{t('common.recovered-found')}
               - else
-                STOLEN
+                #{t('common.STOLEN')}
             - if bike_u.current_stolen_record.present?
               %p
                 %span.attr-title
-                  From
+                  #{t('common.From')}
                 = bike_u.short_address(bike_u.current_stolen_record)
               %p
                 %span.attr-title
-                  Stolen on
+                  #{t('bikes.stolen-on')}
                 = bike_u.current_stolen_record.date_stolen.strftime("%m-%d-%Y")
             
             /         - date_label = "Stolen"

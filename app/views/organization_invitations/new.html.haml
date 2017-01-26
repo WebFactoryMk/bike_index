@@ -1,13 +1,13 @@
 %h1
-  Send invitation
+  #{t('organized.send-invitation')}
 
 = form_for [@organization, @organization_invitation], html: { class: "form-horizontal padded" } do |f|
   - if @organization_invitation.errors.any?
     #alert-block
       .alert.alert-error
         %h4
-          Please fix the following 
-          = pluralize(@organization_invitation.errors.count, "error")
+          #{t('organization.please-fix')}
+          = "#{t('common.errors', :count => @organization_invitation.errors.count)}"
         %ul
           - @organization_invitation.errors.full_messages.each do |msg|
             %li
@@ -15,12 +15,12 @@
     
 
   .control-group
-    = f.label :invitee_email, "Email you're inviting", class: "control-label"
+    = f.label :invitee_email, "#{t('organized.email-youre-inv')}", class: "control-label"
     .controls
       = f.email_field :invitee_email, :required =>true
 
   .control-group
-    = f.label :invitee_name, "Name", class: "control-label"
+    = f.label :invitee_name, "#{t('common.Name')}", class: "control-label"
     .controls
       = f.text_field :invitee_name, :required =>true
 
@@ -36,5 +36,5 @@
 
   
   .control-group.actions.padded
-    = f.submit "Send invitation", class: 'button-green'
+    = f.submit "#{t('organized.send-invitation')}", class: 'button-green'
 

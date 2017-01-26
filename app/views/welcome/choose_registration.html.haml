@@ -9,25 +9,24 @@
                 %a.organization-choice.choose-type{data: {target: new_bike_url(creation_organization_id: membership.organization.id)}}
                   %span.add-selected
                     &#10004
-                  Add a bike through
+                  #{t('welcome.choose_registration.add-bike-through')}
                   %em
                     = membership.organization.name
           %li
             %a.purchase-choice.choose-type{data: {target: new_bike_url}}
               %span.add-selected
                 &#10004
-              Add your own bike
-
+              #{t('welcome.choose_registration.add-own-bike')}
           %li
             %a.choose-type{data: {target: new_bike_url(stolen: true)}}
               %span.add-selected
                 &#10004
-              Add a stolen bike
+              #{t('welcome.choose_registration.add-stolen-bike')}
           %li
             %a.choose-type{data: {target: new_bike_url(recovered: true)}}
               %span.add-selected
                 &#10004
-              Add a stolen/found bike you've recovered
+              #{t('welcome.choose_registration.add-recovered-bike')}
       .col-sm-6.add-bike-column
         %a#add-bike.btn.btn-success.btn-lg{href: new_bike_url}
-          Register bike
+          #{t('welcome.choose_registration.register-bike')}

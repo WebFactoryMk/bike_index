@@ -1,7 +1,7 @@
 %h2{ style: 'padding: 20px 10px 0;' }
   Preview of <code>#{params[:id]}</code>
   %small{ style: 'float: right;' }
-    = link_to 'All templates', admin_mailer_previews_path
+    = link_to "#{t('organized.all-templates')}", admin_mailer_previews_path
 
 - @vars = { b_param_token: 'asdfasdfasdf' }
 

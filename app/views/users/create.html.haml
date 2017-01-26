@@ -1,13 +1,13 @@
 .container
   %h1
-    Thanks for signing up!
+    #{t('users.thanks-for-signup')}
   %h3
-    Please verify your email
+    #{t('users.please-verify-email')}
   %p
-    We sent an email to 
+    #{t('users.we-sent-email')}
     %strong.stolen-color
       = @user.email
-    with a confirmation link in it. Follow the link in the email to finish signing up!
+    #{t('users.with-confirmation')}
 
 :plain
   

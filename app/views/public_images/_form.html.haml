@@ -5,7 +5,7 @@
         %a.close{ herf: "#", data: {dismiss: "alert"}}
           x
         %h4
-          #{pluralize(@public_image.errors.count, "Error")} prevented photo from saving
+          #{t('common.Errors', :count => @public_image.errors.count)} #{t('public-images.prevented-from-saving')}
         %ul
           - @public_image.errors.full_messages.each do |msg|
             %li
@@ -14,20 +14,20 @@
   %section.padded
     .form
       .control-group.padded
-        = f.label :name, "Image name", class: "control-label"
+        = f.label :name, "#{t('public-images.image-name')}", class: "control-label"
         .controls
           = f.text_field :name
       .clearfix
         .alert.alert-notice
           %p
-            Use this if you'd like to attach a photo of your receipt or something similarly private.
+            #{t('public-images.use-this')}
           .control-group.padded
             = f.label :is_private, class: "control-label" do 
-              Do not display
+              #{t('public-images.dont-display')}
               %em
-                (no one will be able to see this image except for you)
+                #{t('public-images.noone-will-see')}
               .controls
                 = f.check_box :is_private
     .bibox-btn.padded
-      = f.submit "Save image", class: "button-green"
-      = link_to 'Cancel Update', edit_bike_url(@public_image.imageable), class: "button-red"
+      = f.submit "#{t('public-images.save-image')}", class: "button-green"
+      = link_to "#{t('public-images.cancel-update')}", edit_bike_url(@public_image.imageable), class: "button-red"

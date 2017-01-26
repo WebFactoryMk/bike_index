@@ -1,7 +1,7 @@
 %h1
-  Protect your bike!
+  #{t('layouts.content.protect-your-bike')}!
 %h2#fnref-bike-theft-estimate
-  Over a million bikes are stolen every year in the US
+  #{t('info.image.p1')}
   %sup
     %a.footnote-ref{ href: "#fn-bike-theft-estimate" }
       1
@@ -9,61 +9,61 @@
 
   %br
   %strong
-    Make sure your bike isn't one of them
+    #{t('info.image.p2')}
 
 %article.padded
   %ol
     %li
       %p
         %strong
-          Cable locks should never be used as a primary means of locking a bike in a city.
-        Cheaper and older U-locks can often be broken without any tools.
+          #{t('info.image.p3')}
+        #{t('info.image.p4')}
         %strong
-          Use a u-lock that costs at least $40.
+          #{t('info.image.p5')}
     %li
       %p
-        Aim to have the hardest bike to steal on the rack. We consider two U-locks, or a U-lock and one heavy duty cable, to be the minimum required in large cities to keep a bike secure.
+        #{t('info.image.p6')}
     %li
       %p
-        Don't rely on foot traffic to keep your bike safe; years of reports have taught us that many thefts, particularly those involving cutting cable locks, occur under the cover of crowd activity or in front of bustling cafés or restaurants. 
+        #{t('info.image.p7')}
     %li
       %p
-        Don't rely on the presence of cameras to keep your bike secure. Security footage is rarely of much use once a bike is gone, and thieves know this.
+        #{t('info.image.p8')}
     %li
       %p
-        Tug on whatever you're about to lock to make sure it can't be easily removed. Signposts in particular can be easily removed by unbolting them and some are already unattached. 
+        #{t('info.image.p9')}
     %li
       %p
-        Many bicycles are stolen from garages and store rooms. Lock your bike securely to an immovable object even if in a "secure" place.
+        #{t('info.image.p10')}
 
 
 %article
   #locking-demonstration
     .locked
-      = image_tag "Locking.svg", alt: "Correctly locking a bike", title: "Pink Power U-Locks are a registered trademark of Bike Index, Inc"
+      = image_tag "Locking.svg", alt: "#{t('info.image.p11')}", title: "#{t('info.image.p12')}"
     %p
       %strong
-        A correctly locked bicycle
+        #{t('info.image.p13')}
       %br
-      The frame is locked to an immovable object. Both wheels are secured.
+      #{t('info.image.p14')}
 
 %p
   %em.less-strong
-    Thanks to #{ link_to "Chicago.StolenBike.org", "http://chicago.stolenbike.org" } for suggestions and the research behind these guidelines. Thanks to #{ link_to "Sweethome", "http://thesweethome.com/reviews/best-bike-lock/" } for their excellent article on choosing a lock.
+    #{t('info.image.p15a')} #{ link_to "Chicago.StolenBike.org", "http://chicago.stolenbike.org" } #{t('info.image.p15b')} #{ link_to "Sweethome", "http://thesweethome.com/reviews/best-bike-lock/" } #{t('info.image.p15c')}
 
 = render '/shared/content_footer_ad'
   
 .footnotes
   %ol
     %li#fn-bike-theft-estimate
-      According to FBI statistics,
+      #{t('info.image.p16')}
       %a{ href: "https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/tables/table-7" }
-        211,547 bikes were reported stolen
-      in 2014, the most recent available year with data. An estimated
+        #{t('info.image.p17')}
+      #{t('info.image.p18')}
       %a{ href: "http://www.transalt.org/files/resources/blueprint/chapter11/" }
-        9 in 10 incidents of bike theft
-      go unreported. That's a lot of bikes! If you would like to read more about bike theft in the US, check out Priceonomics'
+        #{t('info.image.p19')}
+      #{t('info.image.p20')}
       %a{ href: "http://blog.priceonomics.com/post/30393216796/what-happens-to-stolen-bicycles" }
-        exploration 
-      of the topic. #{link_to "↩", "#fnref-bike-theft-estimate", title: "Jump back to footnote 1 in the text", class: "footnote-back-link"}.
+        #{t('common.exploration)}
+      #{t('info.image.p21')} #{link_to "↩", "#fnref-bike-theft-estimate", title: "#{t('info.image.p22')}", class: "footnote-back-link"}.
 

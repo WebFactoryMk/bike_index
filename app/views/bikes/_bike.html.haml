@@ -18,11 +18,11 @@
     .blist-stolen-info
       .dl-holder
         %dl.dl-horizontal
-          - date_label = "Stolen"
-          - date_label = "Recovered" if bike.recovered
+          - date_label = "#{t('common.Stolen')}"
+          - date_label = "#{t('common.Recovered')}" if bike.recovered
           = bike.dl_list_item(bike.current_stolen_record.date_stolen.strftime("%m-%d-%Y"), date_label)
         %dl.dl-horizontal
-          = bike.dl_list_item(bike.short_address(bike.current_stolen_record), "From")
+          = bike.dl_list_item(bike.short_address(bike.current_stolen_record), "#{t('common.From')}")
   - pdf ||= false
   - if pdf
-    = link_to "Printable registration", pdf_bike_url(bike), class: 'printable-registration'
+    = link_to "#{t('bikes.printable-reg')}", pdf_bike_url(bike), class: 'printable-registration'

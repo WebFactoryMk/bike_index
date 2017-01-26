@@ -11,14 +11,14 @@
   :javascript
     window.shop_locations = #{locations};
   %h1#where-bike-index
-    Bike Index partners
+    #{t('info.p1')}
     %small
-      = link_to 'Sign up your organization', new_organization_path
+      = link_to "#{t('shared.content.signup-organization')}", new_organization_path
   %article
     .map-of-shops
       = render '/shared/shops_map'
   %h3.padded
-    US Partner organizations
+    #{t('info.p2')}
 
   %article.where-shops-list#list_of_partners
     - @states.each do |state|
@@ -63,7 +63,7 @@
                       %a{ href: "tel:#{ location.phone }" }
                         = number_to_phone(location.phone)
     %h3.padded
-      International Partner organizations
+      #{t('info.p3')}
 
     - @countries.each do |country|
       - next unless country.locations.where(shown: true).any?
@@ -111,4 +111,4 @@
   %hr.where-add-shops
 
   %p
-    If you're a bike shop and would like to join us, check out our #{link_to "signup page", new_organization_path}.
+    #{t('info.p4')} #{link_to "#{t('info.p5')}", new_organization_path}.

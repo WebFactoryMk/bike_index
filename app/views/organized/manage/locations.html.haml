@@ -2,7 +2,7 @@
   %h1
     %em
       = @organization.name
-    location settings
+    #{t('common.location-settings')}
 = form_for @organization, { url: organization_manage_path(id: @organization.id, organization_id: @organization.to_param), action: 'update', html: { class: 'organized-form' } } do |f|
   = hidden_field_tag :locations_page, true
   .form-group.row.locations-where-and-add
@@ -10,12 +10,12 @@
       .checkbox
         %label
           = f.check_box :show_on_map
-          Display
+          #{t('common.Display')}
           %em
             = @organization.name
-          on #{ link_to 'map', where_path, target: '_blank' }
+          #{t('common.on')} #{ link_to 'map', where_path, target: '_blank' }
     .col-sm-4
-      = revised_link_to_add_fields 'Add location', f, :locations, class_name: 'btn btn-secondary btn-lg'
+      = revised_link_to_add_fields "#{t('organized.Add-location')}", f, :locations, class_name: 'btn btn-secondary btn-lg'
 
   - default_country = @organization.locations.first && @organization.locations.first.country && @organization.locations.first.country.id || Country.united_states.id
   - default_name = @organization.name
@@ -25,4 +25,4 @@
     %span#fieldsetend
   .form-group.row
     .col-sm-4.col-sm-push-4
-      = f.submit 'Save', class: 'btn btn-success btn-lg'
+      = f.submit "#{t('common.Save')}", class: 'btn btn-success btn-lg'

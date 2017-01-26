@@ -9,7 +9,7 @@
           %h3
             = @edit_templates[@edit_template]
           %h5.light-italic
-            Drag the uploaded photos to rearrange the order in which they appear
+            #{t('bikes.drag-photos')}
 
         %ul#public_images.row.edit-photo-display-list{ data: { orderurl: order_public_images_url, imagesurl: public_images_url } }
           = render partial: '/public_images/revised_public_image', collection: @bike.public_images, as: :image
@@ -21,9 +21,9 @@
             = hidden_field_tag :bike_id, @bike.id
             .col-xs-12
               %h5.light-italic
-                Drag and drop files here or use the
+                #{t('bikes.drag-drop')}
                 %strong
-                  Upload Photos 
+                  #{t('public-images.Upload-Photos')}
                 button
               %label.file
                 = f.file_field :image, multiple: true, name: "public_image[image]"

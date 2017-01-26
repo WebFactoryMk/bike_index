@@ -1,9 +1,9 @@
-** <%= @stolen_notification.sender.email %> sent a message about your stolen <%= @stolen_notification.bike.type %>! **
+** <%= @stolen_notification.sender.email %> <%=t :customer-mailer.sent-message %> <%= @stolen_notification.bike.type %>! **
 
 
 <%= @stolen_notification.message %>
 
 
-View your <%= @stolen_notification.bike.type %> on the Bike Index:
+<%=t :customer-mailer.view-your %> <%= @stolen_notification.bike.type %> <%=t :customer-mailer.on-the- %>on the Bike Index:
 
 <%= bike_url(@stolen_notification.bike) %>

@@ -1,6 +1,6 @@
 <section class="bibox-top">    
   <%= link_to edit_bike_url(@public_image.imageable), class: "back" do %>
-    <span>Back Arrow</span>Back to <em>Editing Bike</em>
+    <span>Back Arrow</span><%=t :public-images.back-to %> <em><%=t :public-images.editing-bike %></em>
   <% end %>
 
   <h2>
@@ -10,7 +10,7 @@
   
   <div class="headline-content-edit">
     <h1>
-      Editing Image
+      <%=t :public-images.editing-image %>
     </h1>
   </div>
 </section>

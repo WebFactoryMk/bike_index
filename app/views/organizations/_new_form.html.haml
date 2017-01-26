@@ -1,18 +1,18 @@
 - if current_user.present?
   .alert.alert-warning.padded
     %p
-      Your current account (<strong>#{current_user.email}</strong>) will be a member of the organization you create.
+      #{t('organization.your-current-account')} (<strong>#{current_user.email}</strong>) #{t('organization.will-be-a-member')}.
     %p
-      If you don't want that to be the case, #{link_to 'log out', session_path(redirect_location: 'new_user'), method: :delete} and sign up with the email you would like to use instead.
+      #{t('organization.if-you-dont')}, #{link_to "#{t('common.log-out')}", session_path(redirect_location: 'new_user'), method: :delete} #{t('organization.and-signup')}
   / - if current_user.memberships.count == 1
   - if current_user.memberships.count > 0
     - org = current_user.organizations.first
     %h3.padded
-      You are already a member of #{link_to org.name, organization_url(org.slug)}.
+      #{t('organization.youre-already')} of #{link_to org.name, organization_url(org.slug)}.
     %p.padded
       %a.collapsed{ href: "#org-add-panel", data: { toggle: "collapse"} }
-        Click here
-      if you would like to create another organization.
+        #{t('common.Click-here')}
+      #{t('organization.if-you-would-like')}
 
   #org-add-panel{ class: ('collapse' if org.present?) }
     = form_for @organization, html: { class: 'organized-form' } do |f|
@@ -22,8 +22,8 @@
           .alert.alert-error
             %a.close{"data-dismiss" => "alert"} ×
             %h4
-              Please fix the following 
-              = pluralize(@organization.errors.count, "error")
+              Please fix the following
+              = "#{t('common.errors', :count => @organization.errors.count)}"
             %ul
               - @organization.errors.full_messages.each do |msg|
                 %li 
@@ -31,9 +31,9 @@
       .card
         .card-block
           %h3.card-title
-            New organization
+            #{t('organization.new-org')}
           .form-group.row
-            = f.label :name, 'Organization name', class: 'org-form-label'
+            = f.label :name, "#{t('organization.org-name')}", class: 'org-form-label'
             .col-sm-4
               = f.text_field :name, required: true, class: 'form-control'
 
@@ -49,31 +49,31 @@
               .radio
                 %label
                   = f.radio_button :org_type, 'shop'
-                  Bike shop
+                  #{t('organized.Bike-shop')}
               .radio
                 %label
                   = f.radio_button :org_type, 'advocacy'
-                  Advocacy group
+                  #{t('organized.Advocacy-group')}
               .radio
                 %label
                   = f.radio_button :org_type, 'police'
-                  Police department
+                  #{t('organized.Police-department')}
               .radio
                 %label
                   = f.radio_button :org_type, 'college'
-                  College
+                  #{t('organized.college')}
               .radio
                 %label
                   = f.radio_button :org_type, 'manufacturer'
-                  Manufacturer
+                  #{t('common.Manufacturer')}
           .form-group.row
             .col-sm-4.col-sm-push-4
-              = f.submit 'add organization', class: 'btn btn-success'
+              = f.submit "#{t('')}", class: 'btn btn-success'
 - else
   .alert.alert-info.padded
     %p
-      You'll first have to create an account on the Bike Index.
+      #{t('organization.youll-first')}
     %p
-      After you create a user account you'll be redirected here to create your organization.
-  = link_to "Create an organization account", new_user_url(return_to: '/organizations/new' ), class: 'button-blue call-to-action-new-org text-center'
+      #{t('organization.after-you')}
+  = link_to "#{t('organization.create-org')}", new_user_url(return_to: '/organizations/new' ), class: 'button-blue call-to-action-new-org text-center'
 

@@ -3,7 +3,7 @@ xml.feed('xml:lang' => 'en-US', xmlns: 'http://www.w3.org/2005/Atom')  do |feed|
   feed.id 'https://bikeindex.org/news.atom'
   feed.link rel: 'alternate', type: 'text/html', href: news_index_url
   feed.link rel: 'self', type: 'application/atom+xml', href: news_index_url('atom')
-  feed.title "Bike Index news"
+  feed.title "#{t('layouts.content.bi-news')}"
   if @blogs.length > 0
     feed.updated @blogs[0].published_at.to_datetime.rfc3339
   end

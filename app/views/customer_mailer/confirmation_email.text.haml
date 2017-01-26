@@ -1,15 +1,15 @@
-* Welcome to the Bike Index! *
+* #{t('info.terms.p3a')}! *
 
-Good thinking! We’re glad you’ve joined, you smarty pants.
+#{t('customer-mailer.good-think-smarty')}
 
-To finish signing up you have to confirm your email address. 
+#{t('customer-mailer.to-finish')}
 
-Normally, we'd tell you to click a link, but, for some reason you are only receiving text email. 
+#{t('customer-mailer.normally-wed')}
 
-So you have to actually paste the confirmation url into your internet thingy.
+#{t('customer-mailer.so-you-haveto')}
 
 = confirm_users_url(id: @user.id, code: @user.confirmation_token)
 
 
-Thanks,
-Bike Index Management
+#{t('common.Thanks')},
+#{t('common.Bike-Index-Management')}

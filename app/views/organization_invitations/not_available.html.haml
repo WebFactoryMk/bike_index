@@ -1,10 +1,10 @@
 %h2
-  Whoops, that link isn't connected to a bike
+  #{t('organization.whoops-that')}
 
 %p
-  Perhaps that link has already been used to join the group?
+  #{t('organization.perhaps-that')}
 
 
 %p
-  = link_to "Contact us", contact_us_url
-  if you think we're wrong.
+  = link_to "#{t('shared.footer.contact-us')}", contact_us_url
+  #{t('organization.if-you-think')}

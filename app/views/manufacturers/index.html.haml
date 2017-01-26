@@ -1,14 +1,14 @@
 - cache(['manufacturers_index', @manufacturers.maximum(:updated_at)]) do
   %h1
-    Manufacturers we know about
+    #{t('manufacturers.manufacturers-we-know')}
 
   %section.full-screen-table
     %table#manufacturers-list.table.table-striped.table-bordered
       %thead
         %th
-          Name
+          #{t('common.Name')}
         %th.large-screens
-          Only makes components
+          #{t('manufacturers.only-make-comp')}
       %tbody
         - @manufacturers.each do |manufacturer|
           %tr
@@ -22,11 +22,11 @@
               = "&#x2713;".html_safe unless manufacturer.frame_maker
 
   %h2.padded
-    OH NO! We're missing a manufacturer?
+    #{t('manufacturers.ohno-we')}
   %p
-    That's not actually surprising, there are a bunch.
+    #{t('manufacturers.thats-not')}
   %p
-    Give us a heads up in a comment below.
+    #{t('manufacturers.give-us')}
 
 = render '/shared/content_footer_ad'
 

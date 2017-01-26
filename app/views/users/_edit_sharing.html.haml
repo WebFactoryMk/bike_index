@@ -1,74 +1,74 @@
 .form-wrap
   .form-well-form-header
     %h3
-      Sharing and Personal page settings
+      #{t('users.sharing-settings')}
   
   .related-fields
     .form-group.row.sharing-collapser{ data: { target: '#twitter-field' } }
       %label.form-well-label
-        Show Twitter
+        #{t('users.show-twitter')}
       .form-well-input
         %label.radio-inline
           = f.radio_button :show_twitter, 'true'
-          Show Twitter
+          #{t('users.show-twitter')}
         %label.radio-inline
           = f.radio_button :show_twitter, 'false'
-          No Twitter
+          #{t('users.no-twitter')}
     #twitter-field.form-group.row.collapse
-      = f.label :twitter, 'Twitter handle', class: 'form-well-label'
+      = f.label :twitter, "#{t('users.twitter-handle')}", class: 'form-well-label'
       .form-well-input
-        = f.text_field :twitter, placeholder: 'Twitter handle', class: 'form-control'
+        = f.text_field :twitter, placeholder: "#{t('users.twitter-handle')}", class: 'form-control'
 
     .form-group.row.sharing-collapser{ data: { target: '#personal-field' } }
       %label.form-well-label
-        Show Personal Site
+        #{t('users.show-personal-site')}
       .form-well-input
         %label.radio-inline
           = f.radio_button :show_website, 'true'
-          Show personal website
+          #{t('users.show-personal-website')}
         %label.radio-inline
           = f.radio_button :show_website, 'false'
-          No personal site
+          #{t('users.no-personal-site')}
     #personal-field.form-group.row.collapse
-      = f.label :website, 'Personal Site URL', class: 'form-well-label'
+      = f.label :website, "#{t('users.personal-site-url')}", class: 'form-well-label'
       .form-well-input
         = f.text_field :website, placeholder: 'example.com', class: 'form-control'
 
   .related-fields
     .form-group.row
-      = f.label :my_bikes_link_target, 'Additional Link', class: 'form-well-label'
+      = f.label :my_bikes_link_target, "#{t('users.additional-link')}", class: 'form-well-label'
       .form-well-input
         = f.text_field :my_bikes_link_target, value: @user.mb_link_target, placeholder: "http://example.com", class: 'form-control'
     .form-group.row
-      = f.label :my_bikes_link_target, 'Title for link', class: 'form-well-label'
+      = f.label :my_bikes_link_target, "#{t('users.title-link')}", class: 'form-well-label'
       .form-well-input
-        = f.text_field :my_bikes_link_title, value: @user.mb_link_title, placeholder: 'My awesome link', class: 'form-control'
+        = f.text_field :my_bikes_link_title, value: @user.mb_link_title, placeholder: "#{t('users.my-awesome-link')}", class: 'form-control'
 
   .form-group.row.unnested-field.no-divider-row
     = f.label :username, class: 'form-well-label'
     .form-well-input
       = f.text_field :username, class: 'form-control'
       .below-input-help
-        Your username is the URL for your sharing page and the bike embed form. Update it if you care about those things.
+        #{t('users.your-username-is-url')}
   %hr
   .col-xs-12
     %p
-      The Bike Index can create a page listing all your bikes that includes all the information you want to share. It's your personal page.
+      #{t('users.the-bi-can-create')}
       = link_to '(preview page)', user_url(@user), target: '_blank'
     .form-group.unnested-field.row.sharing-collapser{ data: { target: '#personal-page' } }
       %label.form-well-label
-        Create public page
+        #{t('users.create-public-pagel')}
       .form-well-input
         %label.radio-inline
           = f.radio_button :show_bikes, 'true'
-          Create page
+          #{t('users.create-page')}
         %label.radio-inline
           = f.radio_button :show_bikes, 'false'
-          No, please don't create me a page
+          #{t('users.no-dont-create-page')}
     .related-fields#personal-page.collapse.no-divider-row
       .form-group.row.avatar-upload-wrapper
         %label.form-well-label
-          Profile avatar
+          #{t('users.profile-avatar')}
         .form-well-input
           - if @user.avatar? 
             = image_tag(@user.avatar_url(:thumb))
@@ -76,14 +76,14 @@
           %label.file
             = f.file_field :avatar, class: 'avatar-upload-field'
             %span.file-custom
-              %span.file-upload-text Choose file...
+              %span.file-upload-text #{t('users.choose-file')}...
             = f.hidden_field :avatar_cache
 
       .form-group.row
-        = f.label :title, 'Page title', class:  'form-well-label'
+        = f.label :title, "#{t('users.page-title')}", class:  'form-well-label'
         .form-well-input
-          = f.text_field :title, placeholder: "This user's bikes", class: 'form-control'
+          = f.text_field :title, placeholder: "#{t('users.this-users-bike')}", class: 'form-control'
       .form-group.row
-        = f.label :description, 'Page text', class:  'form-well-label'
+        = f.label :description, "#{t('users.page-text')}", class:  'form-well-label'
         .form-well-input-large
           = f.text_area :description, rows: 6, class: 'form-control'

@@ -1,7 +1,7 @@
-<% stolen_word = @bike.recovered ? "recovered/found" : "stolen" %>
-<h1 style="font-weight: 400; font-size: 30px;">We're spreading the word about your <%= stolen_word %> <%= @biketype %>!</h1>
+<% stolen_word = @bike.recovered ? "#{t('organized.recovered')}" : "#{t('common.stolen')}" %>
+<h1 style="font-weight: 400; font-size: 30px;"><%=t :customer-mailer.were-spreading %> <%= stolen_word %> <%= @biketype %>!</h1>
 
-<p style="">We sent out this tweet from <a href='https://twitter.com/<%= @info[:tweet_account_screen_name] %>'>@<%= @info[:tweet_account_screen_name] %></a>, the <% if @info[:location].present? %><%= @info[:location] %> area <% end %> stolen bike alerter.</p>
+<p style=""><%=t :customer-mailer.sent-tweet %> <a href='https://twitter.com/<%= @info[:tweet_account_screen_name] %>'>@<%= @info[:tweet_account_screen_name] %></a>, the <% if @info[:location].present? %><%= @info[:location] %> area <% end %> stolen bike alerter.</p>
 
 <div style="margin: 30px 0 0; border: 1px solid #dfe3ee;border-radius: 4px; padding: 15px 2%; min-height: 120px;">
   <div style="width: 10%; float: left; height: 120px;">
@@ -16,7 +16,7 @@
     </a>
     <p style="margin:0;color:#333333;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:27px;margin-bottom:0;margin-top:5px;">
       <%= @info[:tweet_string].split('https://bikeindex.org')[0] %>
-      <a href="https://bikeindex.org/bikes/<%= @bike.id %>" style="border:none;color:#0084b4;text-decoration:none">Bike Index link</a>
+      <a href="https://bikeindex.org/bikes/<%= @bike.id %>" style="border:none;color:#0084b4;text-decoration:none"><%=t :customer-mailer.bi-link %></a>
     </p>
     <a href="https://twitter.com/<%= @info[:tweet_account_screen_name] %>/status/<%= @info[:tweet_id] %>" style="display:block;border:none;color:#0084b4;text-decoration:none;color:#999999;font-size: 12px; margin-top: 5px;" target="_blank"><%= Time.now.strftime("%I:%M %P - %d %b %y") %></a>
   </div>
@@ -24,19 +24,19 @@
 <% if @info[:retweet_screen_names].present? %>
   <% retweets = @info[:retweet_screen_names].map{ |sn| "<a href='https://twitter.com/#{sn}'>@#{sn}</a>" } %>
   <p style="color: #95A5A5; font-size: .9em; text-align: center; margin: 0 auto; clear: both; padding: .25em 1em .75em; width: 90%; background: #f7f7f7; border: 1px solid #dfe3ee; border-radius: 0 0 4px 4px;">
-    Alert retweeted by <%= retweets.to_sentence.html_safe %>
+    <%=t :customer-mailer.alert-retweeted %> <%= retweets.to_sentence.html_safe %>
   </p>
 <% end %>
 
-<h2 style="font-weight: 400; text-align: center; padding-top: .5em; margin: 1em 0;font-size: 30px;">Next Steps</h2>
+<h2 style="font-weight: 400; text-align: center; padding-top: .5em; margin: 1em 0;font-size: 30px;"><%=t :customer-mailer.next-steps %></h2>
 <div class="wrap" style="border: 1px solid #dfe3ee;border-radius: 4px;padding: 10px 5px;background: #f7f7f7; margin-bottom: 10px;">
-  <h2 style="font-family: helvetica;font-size: 28px;text-align: center;margin: .5em 0 .7em; font-weight: 400;">Spread the word!</h2>
+  <h2 style="font-family: helvetica;font-size: 28px;text-align: center;margin: .5em 0 .7em; font-weight: 400;"><%=t :customer-mailer.spread-word %></h2>
   <a href="http://www.facebook.com/share.php?u=<%= bike_url(@bike) %>" style="display: block;background: #dfe3ee;position: relative;border-radius: 4px;font-family: helvetica;height: 50px;">
     <img src="https://files.bikeindex.org/facebook.png" style="height: 50px;width: 50px;display: block;float: left;">
-    <span class="text" style="display: block;text-align: center;margin-top: .5em;line-height: 1.2em;padding: 1em 1em 0;">Share on Facebook - so everyone knows to watch out for your <%= @bike.type %>!</span>
+    <span class="text" style="display: block;text-align: center;margin-top: .5em;line-height: 1.2em;padding: 1em 1em 0;"><%=t :customer-mailer.share-fb %> <%= @bike.type %>!</span>
   </a>
 </div>
-<p style="margin: 50px 0 0; padding: 20px 0 0; font-weight: 400; color: #95A5A5; text-align: center;">This email is about the <%= stolen_word %> <%= @biketype %> registered on the Bike Index on <%= @bike.created_at.strftime("%m.%d.%y") %></p>
+<p style="margin: 50px 0 0; padding: 20px 0 0; font-weight: 400; color: #95A5A5; text-align: center;"><%=t :customer-mailer.this-email %> <%= stolen_word %> <%= @biketype %> <%=t :customer-mailer.registered-on %> <%= @bike.created_at.strftime("%m.%d.%y") %></p>
 
 <%= render partial: '/shared/email_bike_box' %>
 

@@ -2,17 +2,17 @@
   %table.table.table-striped.table-bordered
     %thead
       %th
-        Date indexed
+        #{t('users.date-indexed')}
       %th
-        Manufacturer
+        #{t('common.Manufacturer')}
       %th.medium-screens
-        Model
+        #{t('common.Model')}
       %th.large-screens
-        Color&nbsp;&nbsp;
+        #{t('common.Color')}&nbsp;&nbsp;
       %th.medium-screens
-        Sent to
+        #{t('shared.edit_bike.sent-to')}
       %th.large-screens
-        view PDF
+        #{t('bikes.view-pdf')}
 
     %tbody
       - @bikes.each do |bike|
@@ -21,11 +21,11 @@
             - if bike.created_at.today?
               %span.hidden
                 = bike.created_at.strftime("%-m.%-d.%Y %-H.%M")
-              Today at #{bike.created_at.strftime("%-I %p")}
+              #{t('users.today-at')} #{bike.created_at.strftime("%-I %p")}
             - elsif Date.yesterday().beginning_of_day() <= bike.created_at
               %span.hidden
                 = bike.created_at.strftime("%-m.%-d.%Y %-H.%M")
-              Yesterday at #{bike.created_at.strftime("%-I %p")}
+              #{t('users.yesterday-at')} #{bike.created_at.strftime("%-I %p")}
             - else
               %span.hidden
                 = bike.created_at.strftime("%-m.%-d.%Y %-H.%M")

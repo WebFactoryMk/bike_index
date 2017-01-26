@@ -1,28 +1,28 @@
 .organized-page-header
   %h1
-    Manage Users
+    #{t('organized.Manage-Users')}
   %p
-    You have added
+    #{t('organized.You-have-added')}
     %strong
-      #{ pluralize(current_organization.users.count, 'user') }
+      #{ t('common.users', :count => current_organization.users.count) }
   %p
-    And can add
+    #{t('organized.and-can-add')}
     %strong
-      #{current_organization.available_invitation_count} more.
-    = link_to 'Invite another user', new_organization_user_path(organization_id: current_organization.to_param)
+      #{current_organization.available_invitation_count} #{t('common.more')}.
+    = link_to "#{t('organized.invite-another')}", new_organization_user_path(organization_id: current_organization.to_param)
   %p
     - if current_organization.auto_user.present?
-      Emails are currently sent from <em>#{current_organization.auto_user.email}</em>. #{ link_to 'Update email', organization_manage_index_path(organization_id: current_organization.to_param) }
+      #{t('organized.emails-are-currently')} <em>#{current_organization.auto_user.email}</em>. #{ link_to "#{t('organized.update-email')}", organization_manage_index_path(organization_id: current_organization.to_param) }
 
 .organized-table
   %table.table.table-striped.table-bordered
     %thead
       %th
-        Name
+        #{t('common.Name')}
       %th
-        Email
+        #{t('common.Email')}
       %th
-        Date added
+        #{t('organized.date-added')}
       / %th
       /   Total indexed
     %tbody
@@ -44,9 +44,9 @@
             = organization_invitation.invitee_email
           %td
             %strong
-              Has not signed up
+              #{t('organized.hasnt-signup')}
             %br
             %small
-              invited #{l organization_invitation.created_at, format: :short_with_year}
+              #{t('common.invited')} #{l organization_invitation.created_at, format: :short_with_year}
           %td
           / %td

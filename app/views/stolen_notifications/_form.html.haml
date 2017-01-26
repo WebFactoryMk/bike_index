@@ -2,8 +2,8 @@
   = f.hidden_field :bike_id, value: @bike.id
 
   .control-group
-    = f.label :message, "Send a message to the owner", class: "control-label"
+    = f.label :message, "#{t('stolen.send-a-message')}", class: "control-label"
     .controls
       = f.text_area :message, required: true, rows: 2
   .control-group
-    = f.submit "Send", class: 'button-blue'
+    = f.submit "#{t('common.Send')}", class: 'button-blue'

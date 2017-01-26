@@ -2,45 +2,45 @@
   .container
     %ul.footer-links
       %li
-        = link_to "Register a bike", choose_registration_path
+        = link_to "#{t('welcome.index.register-button')}", choose_registration_path
         %ul
           %li
-            = link_to "Bike Index partner organizations", where_path         
+            = link_to "#{t('layouts.content.bi-partner-organizations')}", where_path
           %li
-            = link_to "Bike Index resources", resources_path
+            = link_to "#{t('shared.footer.bi-resources')}", resources_path
           
       %li
-        = link_to "About the Bike Index", about_path  
+        = link_to "#{t('shared.footer.about-bi')}", about_path
         %ul       
           %li
-            = link_to "Bike Index news", news_index_path
+            = link_to "#{t('layouts.content.bi-news')}", news_index_path
           %li
-            = link_to "List of manufacturers", manufacturers_path
+            = link_to "#{t('layouts.content.list-manufacturers')}", manufacturers_path
           %li
-            = link_to "Donate to Bike Index", support_the_index_path
+            = link_to "#{t('shared.footer.donate-bi')}", support_the_index_path
          
       %li.contact-nav-btns
-        = link_to "Help", help_path
+        = link_to "#{t('common.Help')}", help_path
         %ul
           %li
-            = link_to "Contact us", help_path(anchor: 'contact_us_section')
-            = link_to "Sign up a shop or organization", new_organization_path
-            = link_to "API Documentation", documentation_index_path
+            = link_to "#{t('shared.footer.contact-us')}", help_path(anchor: 'contact_us_section')
+            = link_to "#{t('layouts.content.signup-shop-org')}", new_organization_path
+            = link_to "#{t('layouts.documentation.api-documentation')}", documentation_index_path
             
       %li.social
         %ul
           %li
-            = link_to image_tag("facebook.svg", alt: "Bike Index Facebook"), "https://facebook.com/bikeindex", class: 'footer-facebook'
+            = link_to image_tag("facebook.svg", alt: "#{t('shared.header.title')} #{t('common.Facebook')}"), "https://facebook.com/bikeindex", class: 'footer-facebook'
           %li
-            = link_to image_tag("twitter.svg", alt: "Bike Index Twitter"), "https://twitter.com/BikeIndex", class: 'footer-twitter'
+            = link_to image_tag("twitter.svg", alt: "#{t('shared.header.title')} #{t('common.Twitter')}"), "https://twitter.com/BikeIndex", class: 'footer-twitter'
           %li
-            = link_to image_tag("instagram.svg", alt: "Bike Index Instagram"), "http://instagram.com/bikeindex/", class: 'footer-instagram'
+            = link_to image_tag("instagram.svg", alt: "#{t('shared.header.title')} #{t('common.Instagram')}"), "http://instagram.com/bikeindex/", class: 'footer-instagram'
 
     %p
       %span{data: {license: "https://github.com/bikeindex/bike_index/blob/master/LICENSE"}}
         #{Time.zone.now.year} &copy; Bike Index.
       - if current_user.present? && current_user.has_membership?
-        #{link_to "Privacy policy", privacy_path}, #{link_to "vendor terms", vendor_terms_path}
+        #{link_to "#{t('shared.footer.privacy-policy')}", privacy_path}, #{link_to "vendor terms", vendor_terms_path}
       - else
-        #{link_to "Privacy policy", privacy_path}
-      and #{link_to "terms and conditions", terms_path}.
+        #{link_to "#{t('shared.footer.privacy-policy')}", privacy_path}
+      and #{link_to "#{t('shared.footer.terms-conditions')}", terms_path}.

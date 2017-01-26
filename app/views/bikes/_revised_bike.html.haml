@@ -11,9 +11,9 @@
             = [bike.year, bike.mnfg_name].reject(&:blank?).join(' ')
           #{bike.frame_model}
       %ul.attr-list
-        = bike.attr_list_item(bike.serial_display, 'Serial')
-        = bike.attr_list_item(bike.frame_colors.to_sentence, 'Primary colors')
+        = bike.attr_list_item(bike.serial_display, "#{t('common.Serial')}")
+        = bike.attr_list_item(bike.frame_colors.to_sentence, "#{t('bikes.primary-colors')}")
       - if bike.current_stolen_record.present?
         %ul.attr-list
-          = bike.attr_list_item((l bike.current_stolen_record.date_stolen, format: :dotted), "Date #{bike.recovered ? 'recovered' : 'stolen'}")
-          = bike.attr_list_item(bike.short_address(bike.current_stolen_record), 'Location')
+          = bike.attr_list_item((l bike.current_stolen_record.date_stolen, format: :dotted), "#{t('common.Date')} #{bike.recovered ? "#{t('common.recovered')}" : "#{t('common.stolen')}"}")
+          = bike.attr_list_item(bike.short_address(bike.current_stolen_record), "#{t('common.Location')}")

@@ -25,14 +25,14 @@
           %h3.sign-in-up-main-form-header
             = t("sign_in_up.#{controller_name}_main_form_action")
             %small
-              don't have an account? #{ link_to 'sign up', new_user_path }
+              #{t('registration.dont-have-account')} #{ link_to "#{t('common.signup')}", new_user_path }
           = form_for :session, url: session_url do |f|
             .form-group
               = f.label :email, class: 'sr-only'
-              = f.email_field :email, placeholder: 'email', class: 'form-control'
+              = f.email_field :email, placeholder: "#{t('common.email')}", class: 'form-control'
             .form-group
               = f.label :password, class: 'sr-only'
-              = f.password_field :password, placeholder: 'password', class: 'form-control'
+              = f.password_field :password, placeholder: "#{t('common.password')}", class: 'form-control'
             .checkbox
               %label
                 = f.check_box :remember_me, value: '1', checked: true

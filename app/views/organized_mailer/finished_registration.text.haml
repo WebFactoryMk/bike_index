@@ -1,59 +1,59 @@
-- sentence_prefix = "#{ @bike.stolen && @bike.recovered  ? 'recovered/found ' : 'stolen ' }#{ @bike.type } to the Bike Index#{ ' for you' unless @vars[:registered_by_owner] }:"
+- sentence_prefix = "#{ @bike.stolen && @bike.recovered  ? "#{t('organized.recovered')} " : "#{t('common.stolen')} " }#{ @bike.type } #{t('organized.to-the-bi')}#{ " #{t('organized.for-you')}" unless @vars[:registered_by_owner] }:"
 - if @vars[:registered_by_owner]
-  You added a #{ sentence_prefix }
+  #{t('organized.you-added')} #{ sentence_prefix }
 - else
   = @creation_org.present? ? @creation_org.name : @ownership.creator.display_name
   - if @vars[:new_registration]
-    added a #{ sentence_prefix }
+    #{t('organized.added')} #{ sentence_prefix }
   - else
-    sent you a #{ sentence_prefix }
+    #{t('organized.sent-you')} #{ sentence_prefix }
 
 
 - bike_url = ownership_url(@ownership)
 
 \---------------------------------------------------------------
 
-Make: #{ @bike.mnfg_name }
+#{t('common.Make')}: #{ @bike.mnfg_name }
 
-Serial: #{ @bike.serial_number }
+#{t('common.Serial')}: #{ @bike.serial_number }
 
-Color#{ 's' if @bike.frame_colors.count > 1 }: #{ @bike.frame_colors.to_sentence }
+#{t('common.Colors', :count => @bike.frame_colors.count)}: #{ @bike.frame_colors.to_sentence }
 
 - if @bike.stolen
   - stolen_record = @bike.current_stolen_record
-  #{ @bike.recovered ? 'Found:' : 'Stolen from:' }#{ stolen_record.show_stolen_address }
+  #{ @bike.recovered ? "#{t('shared.email_bike.Found')}" : "#{t('shared.email_bike.Stolen-from')}" }#{ stolen_record.show_stolen_address }
 
-  Date: #{ l stolen_record.date_stolen, format: :dotted }
+  #{t('common.Date')}: #{ l stolen_record.date_stolen, format: :dotted }
 
 - if (@bike.ownerships.count == 1 && @bike.registered_new)
-  Color may be incorrect. Claim your bike and update it if necessary!
+  #{t('organized.color-maybe-incorrect')}
 
 \---------------------------------------------------------------
 
 - if @bike.stolen
   - if @bike.recovered
-    Hopefully you find the owner soon.
+    #{t('organized.hopefully-you')}
   - else 
-    Hopefully you find the #{ @bike.type } soon.
+    #{t('organized.hopefully-you1')} #{ @bike.type } #{t('common.soonn')}.
   
-  Give us a heads up when you do (#{ edit_bike_url(@bike) })
+  #{t('organized.give-us')} (#{ edit_bike_url(@bike) })
 
 - unless @ownership.claimed
-  Claim the #{ @bike.type } at this URL: #{ bike_url }
+  #{t('organized.claim')} #{ @bike.type } #{t('organized.at-url')}: #{ bike_url }
 
-  Sign up on BikeIndex.org to claim your #{ @bike.type }
+  #{t('organized.sign-up-on')} #{ @bike.type }
 
-  Edit it, upload photos and make sure you never lose track of your trusty steed!
+  #{t('organized.edit-it')}
 
 - unless @bike.recovered
   \---------------------------------------------------------------
 
-  Protect your bike by following these locking guidelines.
+  #{t('organized.protect-your-bike')}
 
-  \- *Use a U-Lock.* Cable locks should never be used as a primary means of locking a bike in a city.
+  \- #{t('organized.protect1')}
 
-  \- Secure both wheels - either with two U-locks, or one U-lock and one heavy duty cable.
+  \- #{t('organized.secure-both')}
 
-  \- Before locking, check that what you are locking to can't be easily removed.
+  \- #{t('organized.before-lock')}
   
-  Read more here: #{ protect_your_bike_url }
+  #{t('organized.read-more-here')}: #{ protect_your_bike_url }

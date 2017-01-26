@@ -3,9 +3,9 @@
   .container.home-header#home_headies
     %h1
       %a.home_header_link{href: choose_registration_path }
-      Bike Registration
+      #{t('welcome.index.title1-1')}
       %span
-        that Works
+        #{t('welcome.index.title1-2')}
     .testimonial-container
       %h2.visuallyhidden
         Testimonials:
@@ -34,58 +34,55 @@
                 
     .wheeled
       %span.register-container
-        = link_to "Register a bike", choose_registration_path, class: "btn binxbtn binxbtn-lg"
+        = link_to "#{t('welcome.index.register-button')}", choose_registration_path, class: "btn binxbtn binxbtn-lg"
       %span.wheel-holder
         = image_tag "updated/home/wheel_white.png", alt: "(spinning wheel graphic)", id: 'wheeled_wheel', role: 'presentation', :"aria-hidden" => "true"
 - cache('root_bike_count', expires_in: 5.minutes) do
   .home-subhead
     .container
-      %h2
-        Help us fight bicycle theft&mdash;register your bike.
-      
+      %h2 #{t('welcome.index.title2-1')}&mdash;#{t('welcome.index.title2-2')}
+      %h3 #{t('welcome.index.desc1')}
       %h3
-        The Bike Index makes stolen bikes harder to sell and easier to recover by making sure important information about your bike is there when you need it the most.
-      %h3
-        The process is simple, secure, and free. 
+        #{t('welcome.index.desc2')}
         %a.scroll-to-ref{ href: "#how_it_works" }
-          Learn more
-        or #{link_to "register your bike now", choose_registration_path}.
+          #{t('welcome.index.desc2-link1')}
+        #{t('common.or')} #{link_to "#{t('welcome.index.desc2-link2')}", choose_registration_path}.
       %h3
-        So far we've <strong>registered #{number_with_delimiter(Bike.count)} bikes</strong> and <strong>recovered #{number_with_delimiter(StolenRecord.recovered.where("date_recovered < ?", Time.zone.now.beginning_of_day).count)}</strong> stolen bikes.
+        #{t('welcome.index.desc3-1')} <strong>#{t('common.registered')} #{number_with_delimiter(Bike.count)} #{t('common.bikes')}</strong> #{t('common.and')} <strong>#{t('common.recovered')} #{number_with_delimiter(StolenRecord.recovered.where("date_recovered < ?", Time.zone.now.beginning_of_day).count)}</strong> #{t('welcome.index.desc3-2')}.
 - cache 'root_home_1' do
   .info-blocks
     .container
       %article
         = image_tag "updated/info_blocks/online.svg"
         %h2
-          Simple
+          #{t('common.simple')}
         %p
-          We keep all the important information about your bike in one place so it's there when you need it the most. 
+          #{t('welcome.index.simple-desc')}
 
       %article
         = image_tag "updated/info_blocks/secured.svg"
         %h2
-          Secure
+          #{t('common.secure')}
         %p
-          We help used bike sellers and buyers by providing an easy way to verify that a bicycle isn’t stolen.
+          #{t('welcome.index.secure-desc')}
 
       %article
         = image_tag "updated/info_blocks/free.svg"
         %h2
-          Free
+          #{t('common.free')}
         %p
-          Bike Index is a free service for bike shops and individuals.
+          #{t('welcome.index.free-desc')}
 
   .how-it-works#how_it_works
     .container
       %h2
-        How it works
+        #{t('welcome.index.how-it-works')}
       %p
-        It's simple: we offer an easy and efficient way to store and update important identifying information about your bike.
+        #{t('welcome.index.hiw-desc1')}
       %p
-        In the unfortunate event that your bike is stolen, you can harness the power of our network to help get it back. Registering with Bike Index ensures that law enforcement, bike shops, individuals, and everyone in between has the information they need to help reunite you with your bike.
+        #{t('welcome.index.hiw-desc2')}
       %p
-        Bike Index is the most widely used bicycle registration service in the world. We strive to be the best resource in the fight against bicycle theft.
+        #{t('welcome.index.hiw-desc3')}
 
       %p
         / Have any questions? Join the discussion #{link_to 'here', 'https://discuss.bikeindex.org'}.
@@ -95,7 +92,7 @@
     .supporters
       .container
         %h2
-          Used by:
+          #{t('welcome.index.used-by')}:
         %ul.horizontal-list
           %li
             %a{href: "http://www.peopleforbikes.org/", target: "_blank"}
@@ -138,4 +135,4 @@
           
       
       %p.and-many-more
-        \... and many more. #{link_to "View the complete list here", where_path}
+        \... #{t('welcome.index.and-many-more')}:. #{link_to "View the complete list here", where_path}

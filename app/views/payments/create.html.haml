@@ -1,11 +1,11 @@
 .container-fluid
   .row.donate-block
     .col-xs-12
-      %h3 Thank you for supporting the Bike Index!
+      %h3 #{t('payments.thank-you')}
     .select-amount
       %p
-        Your donation of $#{@amount.to_i/100.00} just saved the bikes.
+        #{t('payments.your-donation')} $#{@amount.to_i/100.00} #{t('payments.just-saved')}.
       %p.padded
-        XOXO,
+        #{t('payments.xoxo')},
         %br
-        Bike Index team
+        #{t('payments.bi-team')}

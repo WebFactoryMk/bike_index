@@ -12,8 +12,8 @@
       .form-group
         %label{ for: 'user_terms_of_service', class: 'center-accept-terms-text' }
           = f.check_box :terms_of_service
-          I agree to the Bike Index
+          #{t('users.i-agree-to-bi')}
           %strong
-            Terms of Service
+            #{t('users.terms-of-service')}
       .agree-action
-        = f.submit "Submit", class: 'btn btn-primary btn-lg center-accept-terms-button'
+        = f.submit "#{t('common.Submit')}", class: 'btn btn-primary btn-lg center-accept-terms-button'

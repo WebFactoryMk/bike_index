@@ -1,16 +1,16 @@
 = form_for @feedback do |f|
   .row.form-group
     .col-sm-6
-      = f.email_field :email, placeholder: "Email address", value: current_user ? current_user.email : "", class: 'form-control'
+      = f.email_field :email, placeholder: "#{t('common.Email-address')}", value: current_user ? current_user.email : "", class: 'form-control'
     .col-sm-6
-      = f.text_field :name, placeholder: 'Name', value: current_user ? current_user.name : '', class: 'form-control'
+      = f.text_field :name, placeholder: "#{t('common.Name')}", value: current_user ? current_user.name : '', class: 'form-control'
   
   .row.form-group
     .col-sm-12
-      = f.text_field :title, placeholder: 'Subject', class: 'form-control'
+      = f.text_field :title, placeholder: "#{t('common.Subject')}", class: 'form-control'
   .row.form-group
     .col-sm-12
-      = f.text_area :body, placeholder: 'Your message', rows: 7, class: 'form-control'
+      = f.text_area :body, placeholder: "#{t('common.Your-message')}", rows: 7, class: 'form-control'
   .row.form-group
     .col-sm-12
-      = f.submit 'Send it!', class: 'btn btn-primary'
+      = f.submit "#{t('common.Send-it')}!", class: 'btn btn-primary'

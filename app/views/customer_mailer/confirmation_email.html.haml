@@ -1,12 +1,12 @@
 %h1
-  Welcome to the Bike Index
+  #{t('info.terms.p3a')}
 %p
-  Good thinking! We’re glad you’ve joined.
+  #{t('customer-mailer.good-thinking')}
 
 %p{ style: 'margin-bottom: 2em;' }
-  Please confirm your email address.
+  #{t('customer-mailer.please-confirm')}
 
-= link_to 'Verify email', confirm_users_url(id: @user.id, code: @user.confirmation_token), class: 'binx-button'
+= link_to "#{t('customer-mailer.verify')}", confirm_users_url(id: @user.id, code: @user.confirmation_token), class: 'binx-button'
 
 %p.less-strong.center-text
-  Click the <em>Verify email</em> button to finish signing up for BikeIndex.org!
+  #{t('customer-mailer.click-the')} <em#{t('customer-mailer.verify')}</em> #{t('customer-mailer.button-to-finish')}
